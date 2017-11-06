@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import clientAuth from './clientAuth'
+//import Foundation from 'react-foundation'
 
 import NavBar from './NavBar'
 import LogIn from './views/LogIn'

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './App'
+//import Foundation from 'react-foundation'
 
 ReactDOM.render(
 	<Router><App /></Router>,
