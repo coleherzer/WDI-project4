@@ -1,4 +1,4 @@
-const User = require('../models/User.js')
+const Rant = require('../models/Rant.js')
 //const signToken = require('../serverAuth.js').signToken
 
 module.exports = {
