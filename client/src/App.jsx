@@ -8,6 +8,7 @@ import LogIn from './views/LogIn'
 import LogOut from './views/LogOut'
 import SignUp from './views/SignUp'
 import Home from './views/Home'
+import Profile from './views/Profile'
 
 class App extends React.Component {
 	state = { currentUser: null }
@@ -52,6 +53,12 @@ class App extends React.Component {
 							? <VIP />
 							: <Redirect to="/login" />
 					}} /> */}
+
+					<Route path="/profile" render={(props) => {
+						return currentUser
+							? <Profile {...props} />
+							: <Redirect to="/" />
+					}} />
 
 					<Route path="/" component={Home} />
 

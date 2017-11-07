@@ -10,6 +10,7 @@ const NavBar = (props) => {
 					<span>
 						<ButtonGroup>
 							<Link to="/">Home</Link>
+							<Link to="/profile">Profile</Link>
 							<Link to="/logout">Log Out</Link>
 						</ButtonGroup>
 					</span>

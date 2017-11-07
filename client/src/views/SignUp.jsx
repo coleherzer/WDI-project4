@@ -22,7 +22,7 @@ class SignUp extends React.Component {
 			this.setState({ fields: { name: '', email: '', password: '' } })
 			if(user) {
 				this.props.onSignUpSuccess(user)
-				this.props.history.push('/')
+				this.props.history.push('/profile')
 			}
 		})
 	}
