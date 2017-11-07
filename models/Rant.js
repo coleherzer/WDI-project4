@@ -10,6 +10,7 @@ const
         body: {type: String, required: true}, 
         public: {type: Boolean, default: true}, 
         commentsEnabled: {type: Boolean, default: true},
+        likes: {type: Number, default: 0},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         // have to go back and figure out how to add comments and likes
         comments: [commentSchema]
