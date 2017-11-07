@@ -20,7 +20,8 @@ module.exports = {
 
 	// create a new rant
 	create: (req, res) => {
-		Rant.create(req.body, (err, rant) => {
+		const newRantData = {...req.body, user: req.user._id}
+		Rant.create(newRantData, (err, rant) => {
 			if(err) return res.json({success: false, code: err.code})
 			res.json({success: true, message: 'rant created', rant})
 		})

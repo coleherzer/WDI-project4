@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Button, Colors } from 'react-foundation'
 
 const NavBar = (props) => {
 	return (
@@ -14,6 +15,7 @@ const NavBar = (props) => {
 				)
 				: (
 					<span>
+					<Button color={Colors.SUCCESS}>Test</Button>
 						<Link to="/login">Log In</Link>
 						<Link to="/signup">Sign Up</Link>
 					</span>

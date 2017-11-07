@@ -2,7 +2,9 @@ const
     express = require('express'),
     rantsRouter = new express.Router(),
     rantsCtrl = require('../controllers/rants.js')
-    // verifyToken = require('../serverAuth.js').verifyToken
+    verifyToken = require('../serverAuth.js').verifyToken
+
+rantsRouter.use(verifyToken)
 
 rantsRouter.route('/')
     .get(rantsCtrl.index)
