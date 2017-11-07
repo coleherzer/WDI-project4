@@ -4,7 +4,9 @@ const
     userSchema = new mongoose.Schema({
         name: { type: String },
         email: { type: String, required: true, unique: true },
-        password: { type: String, required: true }
+        password: { type: String, required: true },
+        // need to figure out how to get users to have rants
+        //rants: {type: mongoose.Schema.Types.ObjectId, ref: 'Rant'},
         // following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         // followers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     })
