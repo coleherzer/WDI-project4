@@ -1,5 +1,9 @@
 const 
     mongoose = require('mongoose'),
+    commentSchema = new mongoose.Schema({
+        body: {type: String},
+        user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    }, {timestamps: true}),
     rantSchema = new mongoose.Schema({
         title: {type: String, required: true},
         category: {type: String, required: true},
@@ -8,6 +12,7 @@ const
         commentsEnabled: {type: Boolean, default: true},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         // have to go back and figure out how to add comments and likes
+        comments: [commentSchema]
     }, {timestamps: true})
 
 module.exports = mongoose.model('Rant', rantSchema)
