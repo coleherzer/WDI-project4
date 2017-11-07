@@ -8,7 +8,7 @@ import LogIn from './views/LogIn'
 import LogOut from './views/LogOut'
 import SignUp from './views/SignUp'
 import Home from './views/Home'
-import Profile from './views/Profile'
+import Profile from './views/users/Profile'
 
 class App extends React.Component {
 	state = { currentUser: null }
