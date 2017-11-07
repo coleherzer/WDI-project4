@@ -54,13 +54,13 @@ class App extends React.Component {
 							: <Redirect to="/login" />
 					}} /> */}
 
+					<Route path="/" component={Home} />
+
 					<Route path="/profile" render={(props) => {
 						return currentUser
 							? <Profile {...props} />
 							: <Redirect to="/" />
 					}} />
-
-					<Route path="/" component={Home} />
 
 				</Switch>
 			</div>

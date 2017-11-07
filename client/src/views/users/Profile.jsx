@@ -4,11 +4,12 @@ import clientAuth from '../../clientAuth'
 
 class Profile extends React.Component {
     state = {
-        currentUser: null,
-        mounted: false,
+        currentUser: clientAuth.getCurrentUser(),
+        mounted: false
     }
     
     componentDidMount() {
+        //Wouldnt need all of this if I can set currentUser above
         this.setState({
             currentUser: clientAuth.getCurrentUser(),
             mounted: true
