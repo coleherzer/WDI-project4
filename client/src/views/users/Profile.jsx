@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 class Profile extends React.Component {
     state = {
         currentUser: clientAuth.getCurrentUser(),
-        mounted: false
+        mounted: false,
+        body: false
     }
     
     componentDidMount() {
@@ -53,6 +54,13 @@ class Profile extends React.Component {
         // console.log(this.state)
     }
 
+    onViewClick() {
+        this.setState({
+            ...this.state,
+            body: !this.state.body
+        })
+    }
+
     render() {
         console.log(this.state)
         //console.log(this.state.currentUser)
@@ -63,17 +71,67 @@ class Profile extends React.Component {
                     <Link to='/editprofile'>Edit Profile</Link>
                     <Link to='/newrant'>New Rant</Link>
 
-                    {this.state.userRants.map((rant) => {
-                        return (
-                            <div key={rant._id} className='rant'>
-                                <h3>
-                                    {rant.title}
-                                {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
-                                </h3>
-                            </div>
-                        )
-                        })
-                    })}
+                    <div className="user-rants">
+                        <h3>Rants:</h3>
+                            {this.state.userRants.map((rant) => {
+                                return (
+                                    <div key={rant._id} className='rant row'>
+                                        <div className='large-2 columns'>
+                                            <h3>
+                                                Title: {rant.title}
+                                            {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
+                                            </h3>
+                                        </div>
+                                        <div className='large-2 columns'>
+                                            <h6>
+                                                {rant.likes} Likes
+                                            </h6>
+                                        </div>
+                                        <div className=' large-2 columns'>
+                                            <h6>
+                                                {/* rant comments here */} Comments
+                                            </h6>
+                                        </div>
+                                        <div className='large-2 columns'>
+                                            <h6>
+                                                Category: {rant.category}
+                                            </h6>
+                                        </div>
+                                        <div className='large-2 columns'>
+                                            {this.state.body
+                                            ? (
+                                                <button onClick={this.onViewClick.bind(this)}>Hide</button>
+                                            )
+                                            : (
+                                                <button onClick={this.onViewClick.bind(this)}>View Rant</button>
+                                            )
+                                            }
+                                        </div>
+
+                                        <div className='row'>
+                                            {this.state.body
+                                            ? (
+                                                <div className='view'>
+                                                    <div className='large-6 columns'>
+                                                        <h6>{rant.body}</h6>
+                                                    </div>
+                                                    <div className='large-6 columns'>
+                                                        <Link to='/editrant'>Edit Rant</Link>
+                                                    </div>
+                                                </div>
+                                            )
+                                            : (
+                                                <div>
+
+                                                </div>
+                                            )
+                                            }
+                                        </div>
+
+                                    </div>
+                                )
+                            })}
+                    </div>
 
                 </div>
             )

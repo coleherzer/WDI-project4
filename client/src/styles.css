@@ -2,4 +2,8 @@
   background: lightblue;
   display: inline-block; }
 
+.rant {
+  border: 1px solid black;
+  margin-bottom: .5rem; }
+
 /*# sourceMappingURL=styles.css.map */

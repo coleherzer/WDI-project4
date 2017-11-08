@@ -12,6 +12,9 @@ import Profile from './views/users/Profile'
 import EditProfile from './views/users/EditProfile'
 import DeleteUser from './views/users/DeleteUser'
 import NewRant from './views/rants/NewRant'
+//import ShowRant from './views/rants/ShowRant'
+import EditRant from './views/rants/EditRant'
+
 
 class App extends React.Component {
 	state = { currentUser: null }
@@ -61,6 +64,18 @@ class App extends React.Component {
 					<Route path="/newrant" render={(props) => {
 						return currentUser
 							? <NewRant {...props} />
+							: <Redirect to="/" />
+					}} />
+
+					{/* <Route path="/showrant" render={(props) => {
+						return currentUser
+							? <ShowRant {...props} />
+							: <Redirect to="/" />
+					}} /> */}
+
+					<Route path="/editrant" render={(props) => {
+						return currentUser
+							? <EditRant {...props} />
 							: <Redirect to="/" />
 					}} />
 
