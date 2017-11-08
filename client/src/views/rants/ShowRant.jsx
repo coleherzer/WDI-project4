@@ -9,3 +9,5 @@ class ShowRant extends React.Component {
         )
     }
 }
+
+export default ShowRant

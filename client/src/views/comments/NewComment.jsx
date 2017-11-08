@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-class NewRant extends React.Component {
+class NewComment extends React.Component {
 
     state = {
         fields: {
@@ -58,4 +58,4 @@ class NewRant extends React.Component {
     }
 }
 
-export default NewRant
+export default NewComment

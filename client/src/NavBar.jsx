@@ -11,6 +11,7 @@ const NavBar = (props) => {
 						<ButtonGroup>
 							<Link to="/">Home</Link>
 							<Link to="/profile">Profile</Link>
+							<Link to="/showrants">Explore Rants</Link>
 							<Link to="/logout">Log Out</Link>
 						</ButtonGroup>
 					</span>

@@ -81,7 +81,7 @@ class Profile extends React.Component {
                     <Link to='/newrant'>New Rant</Link>
 
                     <div className="user-rants">
-                        <h3>Rants:</h3>
+                        <h3>My Rants:</h3>
                             {this.state.userRants.map((rant) => {
                                 return (
                                     <div key={rant._id} className='rant row'>
@@ -126,16 +126,17 @@ class Profile extends React.Component {
                                                         {/* also going to need to display rant comments here */}
                                                     </div>
                                                     <div className='large-4 columns'>
-                                                        <button onClick={(swal({
+                                                        <button onClick={() => {
+                                                            (swal({
+                                                            title: "Add Comment",
                                                             content: {
-                                                                title: "Add Comment",
                                                                 element: "input",
                                                                 attributes: {
                                                                     placeholder: "Comment",
                                                                     type: "test",
                                                                 },
                                                             },
-                                                        }))}>Comment</button>
+                                                        }))}}>Comment</button>
                                                     </div>
                                                     <div className='large-4 columns'>
                                                         <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>

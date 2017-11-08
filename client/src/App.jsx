@@ -14,6 +14,7 @@ import DeleteUser from './views/users/DeleteUser'
 import NewRant from './views/rants/NewRant'
 //import ShowRant from './views/rants/ShowRant'
 import EditRant from './views/rants/EditRant'
+import ShowRants from './views/rants/ShowRants'
 
 
 class App extends React.Component {
@@ -51,6 +52,12 @@ class App extends React.Component {
 							: <Redirect to="/" />
 					}} />
 					
+					<Route path="/showrants" render={(props) => {
+						return currentUser
+							? <ShowRants {...props} />
+							: <Redirect to="/" />
+					}} />
+
 					<Route path="/editprofile" render={(props) => {
 						return currentUser
 							? <EditProfile {...props} />
