@@ -2,12 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import clientAuth from '../../clientAuth'
 import { Link } from 'react-router-dom'
+import SweetAlert from 'sweetalert-react'
 
 class Profile extends React.Component {
     state = {
         currentUser: clientAuth.getCurrentUser(),
         mounted: false,
-        body: false
+        bodyDisplayed: false,
+        commentClicked: false
     }
     
     componentDidMount() {
@@ -30,8 +32,6 @@ class Profile extends React.Component {
                 currentUser: res.data
             })
         })
-        console.log(this.state)
-        //console.log(this.state.currentUser)
 
         axios({
             method: 'get',
@@ -44,25 +44,34 @@ class Profile extends React.Component {
             this.setState({
                 ...this.state,
                 userRants: this.state.rants.filter((rant) => {
-                    return rant.user == this.state.currentUser._id
+                    return rant.user === this.state.currentUser._id
                 })
             })
         })
 
         console.log(this.state)
-
-        // console.log(this.state)
     }
 
     onViewClick() {
         this.setState({
             ...this.state,
-            body: !this.state.body
+            bodyDisplayed: !this.state.bodyDisplayed
+        })
+    }
+
+    onEditClick(id) {
+        this.props.history.push(`/editrant/${id}`)
+    }
+
+    onCommentClick() {
+        this.setState({
+            ...this.state,
+            commentClicked: true
         })
     }
 
     render() {
-        console.log(this.state)
+        //console.log(this.state)
         //console.log(this.state.currentUser)
         if(this.state.userRants) {
             return (
@@ -89,7 +98,7 @@ class Profile extends React.Component {
                                         </div>
                                         <div className=' large-2 columns'>
                                             <h6>
-                                                {/* rant comments here */} Comments
+                                                {rant.comments.length} Comments
                                             </h6>
                                         </div>
                                         <div className='large-2 columns'>
@@ -98,7 +107,7 @@ class Profile extends React.Component {
                                             </h6>
                                         </div>
                                         <div className='large-2 columns'>
-                                            {this.state.body
+                                            {this.state.bodyDisplayed
                                             ? (
                                                 <button onClick={this.onViewClick.bind(this)}>Hide</button>
                                             )
@@ -109,14 +118,19 @@ class Profile extends React.Component {
                                         </div>
 
                                         <div className='row'>
-                                            {this.state.body
+                                            {this.state.bodyDisplayed
                                             ? (
                                                 <div className='view'>
-                                                    <div className='large-6 columns'>
+                                                    <div className='large-4 columns'>
                                                         <h6>{rant.body}</h6>
+                                                        {/* also going to need to display rant comments here */}
                                                     </div>
-                                                    <div className='large-6 columns'>
-                                                        <Link to='/editrant'>Edit Rant</Link>
+                                                    <div className='large-4 columns'>
+                                                        <button>Comment</button>
+                                                    </div>
+                                                    <div className='large-4 columns'>
+                                                        <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
+                                                        <button onClick={this.onEditClick.bind(this, rant.id)}>Edit Rant</button>
                                                     </div>
                                                 </div>
                                             )
@@ -128,9 +142,35 @@ class Profile extends React.Component {
                                             }
                                         </div>
 
+                                        <div className='row'>
+                                            {this.state.commentClicked
+                                            ? (
+                                                <div className='commentForm'>
+                                                    <h1>form for comments</h1>
+                                                </div>
+                                            )
+                                            : (
+                                                <div>
+
+                                                </div>
+                                            )
+
+                                            }
+
+                                        </div>
+
                                     </div>
                                 )
                             })}
+                    </div>
+                    <div>
+                        <button onClick={() => this.setState({ show: true })}>Alert</button>
+                        <SweetAlert
+                            show={this.state.show}
+                            title="Demo"
+                            text="SweetAlert in React"
+                            onConfirm={() => this.setState({ show: false })}
+                        />
                     </div>
 
                 </div>
@@ -139,7 +179,6 @@ class Profile extends React.Component {
         else {
             return (
                 <div className='not-mounted'>
-                    <h1>its not even mounted yet...</h1>
                 </div>
             )
         }
@@ -147,3 +186,15 @@ class Profile extends React.Component {
 }
 
 export default Profile
+
+/*
+onClick={this.onCommentClick(swal({
+    content: {
+        element: "input",
+        attributes: {
+        placeholder: "Type your password",
+        type: "password",
+        },
+    },
+    }))}
+*/

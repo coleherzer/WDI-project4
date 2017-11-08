@@ -72,7 +72,6 @@ class EditProfile extends React.Component {
         if (this.state.mounted === false) {
             return (
                 <div>
-                    Loading...
                 </div>
             )
         }

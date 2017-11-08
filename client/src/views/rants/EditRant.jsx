@@ -1,9 +1,11 @@
 import React from 'react'
 import axios from 'axios'
+import clientAuth from '../../clientAuth'
 
 class EditRant extends React.Component {
 
     state = {
+        currentUser: clientAuth.getCurrentUser(),
         fields: {
             title: '',
             category: '',
@@ -13,7 +15,9 @@ class EditRant extends React.Component {
     }
 
     componentDidMount() {
+        console.log('in edit rant view')
         const id = this.props.match.params.id
+        console.log(this.props)
         // could also do const { id } = this.props.match.params
         axios({
             method: 'get',
