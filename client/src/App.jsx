@@ -9,6 +9,7 @@ import LogOut from './views/LogOut'
 import SignUp from './views/SignUp'
 import Home from './views/Home'
 import Profile from './views/users/Profile'
+import EditProfile from './views/users/EditProfile'
 
 class App extends React.Component {
 	state = { currentUser: null }
@@ -39,6 +40,18 @@ class App extends React.Component {
 						return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
 					}} />
 
+					<Route path="/profile" render={(props) => {
+						return currentUser
+							? <Profile {...props} />
+							: <Redirect to="/" />
+					}} />
+					
+					<Route path="/editprofile" render={(props) => {
+						return currentUser
+							? <EditProfile {...props} />
+							: <Redirect to="/" />
+					}} />
+
 					<Route path="/logout" render={(props) => {
 						return <LogOut onLogOut={this.logOut.bind(this)} />
 					}} />
@@ -55,12 +68,6 @@ class App extends React.Component {
 					}} /> */}
 
 					<Route path="/" component={Home} />
-
-					<Route path="/profile" render={(props) => {
-						return currentUser
-							? <Profile {...props} />
-							: <Redirect to="/" />
-					}} />
 
 				</Switch>
 			</div>

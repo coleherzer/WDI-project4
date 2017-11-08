@@ -1,9 +1,11 @@
 import React from 'react'
 import axios from 'axios'
+import clientAuth from '../../clientAuth'
 
 class EditProfile extends React.Component {
 
     state = {
+        currentUser: clientAuth.getCurrentUser(),
         fields: {
             name: '',
             email: '',
@@ -13,7 +15,9 @@ class EditProfile extends React.Component {
     }
 
     componentDidMount() {
-        const id = this.props.match.params.id
+        //this.props.match.params.id
+        const id = this.state.currentUser._id
+        console.log(id)
         // could also do const { id } = this.props.match.params
         axios({
             method: 'get',
@@ -33,7 +37,7 @@ class EditProfile extends React.Component {
 
     onFormSubmit(evt, id) {
         evt.preventDefault()
-        const userId = this.props.match.params.id
+        const userId = this.state.currentUser._id
         console.log(this.state.fields)
         axios({
             method: 'patch',

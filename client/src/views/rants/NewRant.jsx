@@ -53,7 +53,7 @@ class NewRant extends React.Component {
                 <input type="text" placeholder="Rant it up" name='body' />
                 {/* In addition, would need ability for user to switch
                 On and off public and comments */}
-                <button type="submit">Rant</button>
+                <button type="submit">Rant it</button>
             </form>
 
 
