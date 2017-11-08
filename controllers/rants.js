@@ -24,6 +24,8 @@ module.exports = {
 		Rant.create(newRantData, (err, rant) => {
 			if(err) return res.json({success: false, code: err.code})
 			res.json({success: true, message: 'rant created', rant})
+			// console.log(req.user.name)
+			// req.user.rants.push(rant)
 		})
 	},
 

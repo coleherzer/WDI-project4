@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import clientAuth from '../../clientAuth'
+import { Link } from 'react-router-dom'
 
 class EditProfile extends React.Component {
 
@@ -86,6 +87,7 @@ class EditProfile extends React.Component {
                         <input type="password" defaultValue={this.state.fields.password} name='password'/>
                         <button type="submit">Edit Profile</button>
                     </form>
+                    <Link to='/deleteuser'>Delete Account</Link>
                 </div>
             )
         }

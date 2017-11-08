@@ -43,20 +43,24 @@ class NewRant extends React.Component {
     }
 
     render() {
-        <div className='NewRant'>
-            <h5>You've got a lot up in that head of yours... Rant About It</h5>
+        return (
+            <div className='NewRant'>
+                <h3>Rant About It</h3>
 
-            {/* form for a new rant */}
-            <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                <input type="text" placeholder="Title" name='title' />
-                <input type="text" placeholder="Category" name='category' />
-                <input type="text" placeholder="Rant it up" name='body' />
-                {/* In addition, would need ability for user to switch
-                On and off public and comments */}
-                <button type="submit">Rant it</button>
-            </form>
+                {/* form for a new rant */}
+                <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                    <input type="text" placeholder="Title" name='title' />
+                    <input type="text" placeholder="Category" name='category' />
+                    <input type="text" placeholder="Rant it up" name='body' />
+                    {/* In addition, would need ability for user to switch
+                    On and off public and comments */}
+                    <button type="submit">Rant it</button>
+                </form>
 
 
-        </div>
+            </div>
+        )
     }
 }
+
+export default NewRant

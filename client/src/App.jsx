@@ -10,6 +10,8 @@ import SignUp from './views/SignUp'
 import Home from './views/Home'
 import Profile from './views/users/Profile'
 import EditProfile from './views/users/EditProfile'
+import DeleteUser from './views/users/DeleteUser'
+import NewRant from './views/rants/NewRant'
 
 class App extends React.Component {
 	state = { currentUser: null }
@@ -49,6 +51,16 @@ class App extends React.Component {
 					<Route path="/editprofile" render={(props) => {
 						return currentUser
 							? <EditProfile {...props} />
+							: <Redirect to="/" />
+					}} />
+
+					<Route path="/deleteuser" render={(props) => {
+						return <DeleteUser onLogOut={this.logOut.bind(this)} />
+					}} />
+
+					<Route path="/newrant" render={(props) => {
+						return currentUser
+							? <NewRant {...props} />
 							: <Redirect to="/" />
 					}} />
 
