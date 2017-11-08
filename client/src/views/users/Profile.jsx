@@ -30,29 +30,50 @@ class Profile extends React.Component {
             })
         })
         console.log(this.state)
-        console.log(this.state.currentUser)
+        //console.log(this.state.currentUser)
+
+        axios({
+            method: 'get',
+            url: '/api/rants'
+        }).then((res) => {
+            this.setState({
+                ...this.state,
+                rants: res.data
+            })
+            this.setState({
+                ...this.state,
+                userRants: this.state.rants.filter((rant) => {
+                    return rant.user == this.state.currentUser._id
+                })
+            })
+        })
+
+        console.log(this.state)
+
+        // console.log(this.state)
     }
 
     render() {
         console.log(this.state)
-        console.log(this.state.currentUser)
-        if(this.state.mounted === true) {
+        //console.log(this.state.currentUser)
+        if(this.state.userRants) {
             return (
                 <div className="Profile">
                     <h1>{this.state.currentUser.name}'s Ranter page</h1>
                     <Link to='/editprofile'>Edit Profile</Link>
                     <Link to='/newrant'>New Rant</Link>
 
-                    {/* {this.state.currentUser.rants.map((rant) => {
+                    {this.state.userRants.map((rant) => {
                         return (
                             <div key={rant._id} className='rant'>
                                 <h3>
-                                    {rant.title} */}
+                                    {rant.title}
                                 {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
-                                {/* </h3>
+                                </h3>
                             </div>
                         )
-                    })} */}
+                        })
+                    })}
 
                 </div>
             )

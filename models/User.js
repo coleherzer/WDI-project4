@@ -5,8 +5,8 @@ const
         name: { type: String },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
-        rants: [],
-        comments: []
+        rants: [{type: mongoose.Schema.Types.ObjectId, ref: 'Rant'}],
+        comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
         // following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         // followers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     })
