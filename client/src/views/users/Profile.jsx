@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import clientAuth from '../../clientAuth'
 import { Link } from 'react-router-dom'
-import SweetAlert from 'sweetalert-react'
+import swal from 'sweetalert'
 
 class Profile extends React.Component {
     state = {
@@ -64,10 +64,10 @@ class Profile extends React.Component {
     }
 
     onCommentClick() {
-        this.setState({
-            ...this.state,
-            commentClicked: true
-        })
+        // this.setState({
+        //     ...this.state,
+        //     commentClicked: true
+        // })
     }
 
     render() {
@@ -126,7 +126,16 @@ class Profile extends React.Component {
                                                         {/* also going to need to display rant comments here */}
                                                     </div>
                                                     <div className='large-4 columns'>
-                                                        <button>Comment</button>
+                                                        <button onClick={(swal({
+                                                            content: {
+                                                                title: "Add Comment",
+                                                                element: "input",
+                                                                attributes: {
+                                                                    placeholder: "Comment",
+                                                                    type: "test",
+                                                                },
+                                                            },
+                                                        }))}>Comment</button>
                                                     </div>
                                                     <div className='large-4 columns'>
                                                         <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
@@ -163,15 +172,6 @@ class Profile extends React.Component {
                                 )
                             })}
                     </div>
-                    <div>
-                        <button onClick={() => this.setState({ show: true })}>Alert</button>
-                        <SweetAlert
-                            show={this.state.show}
-                            title="Demo"
-                            text="SweetAlert in React"
-                            onConfirm={() => this.setState({ show: false })}
-                        />
-                    </div>
 
                 </div>
             )
@@ -198,3 +198,17 @@ onClick={this.onCommentClick(swal({
     },
     }))}
 */
+
+/* <div>
+    <button onClick={() => this.setState({ show: true })}>Alert</button>
+    <SweetAlert
+        show={this.state.show}
+        title="Add Comment"
+        formField= ""
+        /* attributes= 
+            placeholder= "Type your password"
+            type= "text"
+        */
+//         onConfirm={() => this.setState({ show: false })}
+//     />
+// </div> */
