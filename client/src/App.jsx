@@ -52,7 +52,7 @@ class App extends React.Component {
 							: <Redirect to="/" />
 					}} />
 					
-					<Route path="/showrants" render={(props) => {
+					<Route path="/explore" render={(props) => {
 						return currentUser
 							? <ShowRants {...props} />
 							: <Redirect to="/" />
@@ -68,7 +68,7 @@ class App extends React.Component {
 						return <DeleteUser onLogOut={this.logOut.bind(this)} />
 					}} />
 
-					<Route exact path="/editrant:id" render={(props) => {
+					<Route exact path="/editrant/:id" render={(props) => {
 						return currentUser
 							? <EditRant {...props} />
 							: <Redirect to="/" />

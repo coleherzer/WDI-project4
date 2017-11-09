@@ -83,7 +83,7 @@ class EditRant extends React.Component {
                     <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
                         <input type="text" defaultValue={this.state.fields.title} name="title"/>
                         <input type="text" defaultValue={this.state.fields.category} name='category'/>
-                        <input type="test" defaultValue={this.state.fields.body} name='body'/>
+                        <input type="text" defaultValue={this.state.fields.body} name='body'/>
                         <button type="submit">Edit Rant</button>
                     </form>
                 </div>

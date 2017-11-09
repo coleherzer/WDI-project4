@@ -8,9 +8,13 @@ class ShowRants extends React.Component {
     state = {
         currentUser: clientAuth.getCurrentUser(),
         mounted: false,
+        rantBeingViewed: null,
         bodyDisplayed: false,
-        commentClicked: false
+        commentClicked: false,
+        filter: ''
     }
+
+    // this.state.rants.filter(...yourcodehere...).map()
 
     componentDidMount() {
         this.setState({
@@ -29,11 +33,22 @@ class ShowRants extends React.Component {
         })
     }
 
-    onViewClick() {
-        this.setState({
-            ...this.state,
-            bodyDisplayed: !this.state.bodyDisplayed
-        })
+    onViewClick(id) {
+        if(id) {
+            this.setState({
+                rantBeingViewed: id,
+                bodyDisplayed: !this.state.bodyDisplayed
+            })
+        } else {
+            this.setState({
+                rantBeingViewed: null,
+                bodyDisplayed: !this.state.bodyDisplayed
+            })
+        }
+    }
+
+    onSearchSubmit() {
+        console.log('search attempted')
     }
 
     render() {
@@ -41,7 +56,10 @@ class ShowRants extends React.Component {
             return (
                 <div className='ShowRants'>
                     <h1>All dem rants</h1>
-                    <h3>Search bar for rants here</h3>
+                    <form onSubmit={this.onSearchSubmit.bind(this)}>
+                        <input className='search-input' type="text" placeholder=''/>
+                        <button type='submit'>Search Rants</button>
+                    </form>
                     <div className="user-rants">
                         <h3>Rants:</h3>
                             {this.state.rants.map((rant) => {
@@ -69,17 +87,17 @@ class ShowRants extends React.Component {
                                             </h6>
                                         </div>
                                         <div className='large-2 columns'>
-                                            {this.state.bodyDisplayed
+                                            {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
                                             ? (
                                                 <button onClick={this.onViewClick.bind(this)}>Hide</button>
                                             )
                                             : (
-                                                <button onClick={this.onViewClick.bind(this)}>View Rant</button>
+                                                <button onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
                                             )
                                             }
                                         </div>
                                     <div className='row'>
-                                        {this.state.bodyDisplayed
+                                        {this.state.rantBeingViewed === rant._id
                                             ? (
                                                 <div className='view'>
                                                     <div className='large-4 columns'>

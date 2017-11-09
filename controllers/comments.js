@@ -3,6 +3,7 @@ const Rant = require('../models/Rant.js')
 module.exports = {
     // create a new comment
 	create: (req, res) => {
+        console.log(req.body)
         const newCommentData = {...req.body, user: req.user._id}
         Rant.findById(req.params.id, (err, rant) => {
             rant.comments.push(newCommentData)

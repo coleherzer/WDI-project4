@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { ButtonGroup, Link as Flink } from 'react-foundation'
+import  FLink from './FLink'
+import { ButtonGroup } from 'react-foundation'
 
 const NavBar = (props) => {
 	return (
@@ -9,19 +9,19 @@ const NavBar = (props) => {
 				? (
 					<span>
 						<ButtonGroup>
-							<Link to="/">Home</Link>
-							<Link to="/profile">Profile</Link>
-							<Link to="/showrants">Explore Rants</Link>
-							<Link to="/logout">Log Out</Link>
+							<FLink className="button" to="/">Home</FLink>
+							<FLink to="/profile">Profile</FLink>
+							<FLink to="/explore">Explore Rants</FLink>
+							<FLink to="/logout">Log Out</FLink>
 						</ButtonGroup>
 					</span>
 				)
 				: (
 					<span>
 						<ButtonGroup>
-							<Link to="/">Home</Link>
-							<Link to="/login">Log In</Link>
-							<Link to="/signup">Sign Up</Link>
+							<FLink to="/">Home</FLink>
+							<FLink to="/login">Log In</FLink>
+							<FLink to="/signup">Sign Up</FLink>
 						</ButtonGroup>
 					</span>
 				)

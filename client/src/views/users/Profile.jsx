@@ -8,8 +8,10 @@ class Profile extends React.Component {
     state = {
         currentUser: clientAuth.getCurrentUser(),
         mounted: false,
+        rantBeingViewed: null,
         bodyDisplayed: false,
-        commentClicked: false
+        commentClicked: false,
+        userRants: []
     }
     
     componentDidMount() {
@@ -19,9 +21,6 @@ class Profile extends React.Component {
             ...this.state,
             mounted: !this.state.mounted
         })
-        // console.log(this.state.currentUser)
-        // const id = this.props.match.params.id
-        // // could also do const { id } = this.props.match.params
         axios({
             method: 'get',
             url: `/api/users/${id}`
@@ -39,11 +38,7 @@ class Profile extends React.Component {
         }).then((res) => {
             this.setState({
                 ...this.state,
-                rants: res.data
-            })
-            this.setState({
-                ...this.state,
-                userRants: this.state.rants.filter((rant) => {
+                userRants: res.data.filter((rant) => {
                     return rant.user === this.state.currentUser._id
                 })
             })
@@ -52,28 +47,66 @@ class Profile extends React.Component {
         console.log(this.state)
     }
 
-    onViewClick() {
-        this.setState({
-            ...this.state,
-            bodyDisplayed: !this.state.bodyDisplayed
-        })
+    onViewClick(id) {
+        if(id) {
+            this.setState({
+                rantBeingViewed: id,
+                bodyDisplayed: !this.state.bodyDisplayed
+            })
+        } else {
+            this.setState({
+                rantBeingViewed: null,
+                bodyDisplayed: !this.state.bodyDisplayed
+            })
+        }
     }
 
     onEditClick(id) {
         this.props.history.push(`/editrant/${id}`)
     }
 
-    onCommentClick() {
-        // this.setState({
-        //     ...this.state,
-        //     commentClicked: true
-        // })
+    // onInputChange() {
+    //     console.log('hi')
+    // }
+
+    onCommentClick(id) {
+        //const id = id
+        const rant = this.state.userRants.filter((rant) => {
+            return id === rant._id
+        })
+        console.log(rant)
+
+        swal({
+            title: `${rant.title}`,
+            content: {
+                element: "input",
+                attributes: {
+                    onChange: this.onInputChange.bind(this),
+                    placeholder: "Comment",
+                    type: "text",
+                    name: 'body'
+                }
+            },
+        }).then(() => {
+            console.log(swal.content)
+            axios({
+                method: 'post',
+                url: `/api/rants/${id}/comments`,
+                data: swal.content.attributes.placeholder
+            })
+        }).then((res) => {
+            this.setState({
+                ...this.state
+                //commentClicked: true
+            })
+        })
     }
 
     render() {
         //console.log(this.state)
         //console.log(this.state.currentUser)
-        if(this.state.userRants) {
+        // if(this.state.userRants) {
+            console.log(this.state.rantBeingViewed)
             return (
                 <div className="Profile">
                     <h1>{this.state.currentUser.name}'s Ranter page</h1>
@@ -107,40 +140,42 @@ class Profile extends React.Component {
                                             </h6>
                                         </div>
                                         <div className='large-2 columns'>
-                                            {this.state.bodyDisplayed
+                                            {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
                                             ? (
                                                 <button onClick={this.onViewClick.bind(this)}>Hide</button>
                                             )
                                             : (
-                                                <button onClick={this.onViewClick.bind(this)}>View Rant</button>
+                                                <button onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
                                             )
                                             }
                                         </div>
 
                                         <div className='row'>
-                                            {this.state.bodyDisplayed
+                                            {this.state.rantBeingViewed === rant._id
                                             ? (
-                                                <div className='view'>
-                                                    <div className='large-4 columns'>
-                                                        <h6>{rant.body}</h6>
-                                                        {/* also going to need to display rant comments here */}
+                                                <div className='container'>
+                                                    <div className='row'>
+                                                        <div className='view'>
+                                                            <div className='large-4 columns'>
+                                                                <h6>{rant.body}</h6>
+                                                                {/* also going to need to display rant comments here */}
+                                                            </div>
+                                                            <div className='large-4 columns'>
+                                                                <button onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
+                                                            </div>
+                                                            <div className='large-4 columns'>
+                                                                <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div className='large-4 columns'>
-                                                        <button onClick={() => {
-                                                            (swal({
-                                                            title: "Add Comment",
-                                                            content: {
-                                                                element: "input",
-                                                                attributes: {
-                                                                    placeholder: "Comment",
-                                                                    type: "test",
-                                                                },
-                                                            },
-                                                        }))}}>Comment</button>
-                                                    </div>
-                                                    <div className='large-4 columns'>
-                                                        <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
-                                                        <button onClick={this.onEditClick.bind(this, rant.id)}>Edit Rant</button>
+                                                    <div className='row'>
+                                                        {console.log(rant)}
+                                                        {rant.comments.map((comment) => {
+                                                            <div class='comment'>
+                                                                <h5>hi</h5>
+                                                                <h3>{comment.body}</h3>
+                                                            </div>
+                                                        })}
                                                     </div>
                                                 </div>
                                             )
@@ -151,24 +186,6 @@ class Profile extends React.Component {
                                             )
                                             }
                                         </div>
-
-                                        <div className='row'>
-                                            {this.state.commentClicked
-                                            ? (
-                                                <div className='commentForm'>
-                                                    <h1>form for comments</h1>
-                                                </div>
-                                            )
-                                            : (
-                                                <div>
-
-                                                </div>
-                                            )
-
-                                            }
-
-                                        </div>
-
                                     </div>
                                 )
                             })}
@@ -176,13 +193,13 @@ class Profile extends React.Component {
 
                 </div>
             )
-        }
-        else {
-            return (
-                <div className='not-mounted'>
-                </div>
-            )
-        }
+        // }
+        // else {
+        //     return (
+        //         <div className='not-mounted'>
+        //         </div>
+        //     )
+        // }
     }
 }
 
