@@ -2,7 +2,7 @@
   margin: 0 !important; }
 
 .NavBar {
-  background: lightblue;
+  background: #17ffe0;
   width: 100%;
   display: inline-block; }
 
@@ -21,5 +21,17 @@
 
 .home-rants {
   border: 2px solid #19194d; }
+
+.LogIn {
+  margin: 5rem 5rem; }
+
+.login-input {
+  width: 50% !important; }
+
+.SignUp {
+  margin: 5rem 5rem; }
+
+.signup-input {
+  width: 50% !important; }
 
 /*# sourceMappingURL=styles.css.map */
