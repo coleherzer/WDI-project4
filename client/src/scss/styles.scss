@@ -1,3 +1,8 @@
+//Nav styles
+.button {
+    margin: 0!important;
+}
+
 .NavBar {
     background: lightblue;
     width: 100%;
@@ -10,8 +15,17 @@
 }
 
 .search-input {
-    width: 50%;
-    display: inline-block;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    display: inline-block!important;
+    width: 50%!important;
+    margin-left: 1rem!important;
+    margin-right: 1rem!important;
+}
+
+// Home Styles
+.welcome {
+    margin-top: 3rem;
+}
+
+.home-rants {
+    border: 2px solid rgb(25, 25, 77);
 }

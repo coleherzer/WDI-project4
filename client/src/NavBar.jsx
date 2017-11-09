@@ -7,23 +7,23 @@ const NavBar = (props) => {
 		<div className='NavBar'>
 			{props.currentUser
 				? (
-					<span>
-						<ButtonGroup>
-							<FLink className="button" to="/">Home</FLink>
+					<ButtonGroup>
+						<FLink to="/">Home</FLink>
+						<div className='right'>
 							<FLink to="/profile">Profile</FLink>
 							<FLink to="/explore">Explore Rants</FLink>
 							<FLink to="/logout">Log Out</FLink>
-						</ButtonGroup>
-					</span>
+						</div>
+					</ButtonGroup>
 				)
 				: (
-					<span>
-						<ButtonGroup>
-							<FLink to="/">Home</FLink>
+					<ButtonGroup>
+						<FLink to="/">Home</FLink>
+						<div className='right'>
 							<FLink to="/login">Log In</FLink>
 							<FLink to="/signup">Sign Up</FLink>
-						</ButtonGroup>
-					</span>
+						</div>
+					</ButtonGroup>
 				)
 			}
 		</div>
