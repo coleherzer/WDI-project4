@@ -166,7 +166,7 @@ class RecentRants extends React.Component {
                             })}
 
                             <div className='row home-explore-div'>
-                                <button className='explore-btn'>Explore More Rants!</button>
+                                <Link to='/explore' className='explore-btn button radius'>Explore More Rants!</Link>
                             </div>
                     </div>
             )

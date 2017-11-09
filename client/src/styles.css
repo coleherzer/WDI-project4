@@ -27,7 +27,8 @@
   text-align: center; }
 
 .home-explore-div {
-  text-align: center; }
+  text-align: center;
+  margin: 1rem 0 !important; }
 
 .explore-btn {
   margin-top: 1rem; }
@@ -43,5 +44,8 @@
 
 .signup-input {
   width: 50% !important; }
+
+.clear-search-btn {
+  margin-left: 1rem; }
 
 /*# sourceMappingURL=styles.css.map */

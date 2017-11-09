@@ -11,10 +11,8 @@ class ShowRants extends React.Component {
         rantBeingViewed: null,
         bodyDisplayed: false,
         commentClicked: false,
-        filter: ''
+        filter: 'Enter a Category'
     }
-
-    // this.state.rants.filter(...yourcodehere...).map()
 
     componentDidMount() {
         this.setState({
@@ -64,29 +62,80 @@ class ShowRants extends React.Component {
         })
     }
 
-    onSearchSubmit() {
+    onSearchSubmit(evt) {
+        evt.preventDefault()
         console.log('search attempted')
+
+        this.setState({
+            filter: evt.target.value
+        })
+
+        console.log(this.state.filter)
+
+        this.setState({
+            rants: this.state.rants.filter((rant) => {
+                return rant.category == this.state.filter
+            })
+        })
+
+        // evt.target.value = ''
+        // console.log(evt.target.value)
+
+        //.map()      Had this .map at the end of the above filter?
+    }
+
+    onInputChange(evt) {
+        this.setState({
+            filter: evt.target.value
+        })
+    }
+
+    onClearClick(evt) {
+        evt.preventDefault()
+        console.log('clear')
+        axios({
+            method: 'get',
+            url: '/api/rants'
+        }).then((res) => {
+            this.setState({
+                ...this.state,
+                rants: res.data,
+                filter: 'Enter a Category'
+            })
+        })
     }
 
     render() {
         if(this.state.rants) {
             return (
                 <div className='ShowRants'>
-                    <h1>All dem rants</h1>
-                    <form onSubmit={this.onSearchSubmit.bind(this)}>
-                        <input className='search-input' type="text" placeholder=''/>
-                        <button type='submit'>Search Rants</button>
+                    <div className='row'>
+                        <h1>Browse Rants</h1>
+                    </div>
+                    <div className='row'>
+                    <form onSubmit={this.onSearchSubmit.bind(this)} onChange={this.onInputChange.bind(this)}>
+                        <input className='search-input radius' defaultValue='' type="text" placeholder={this.state.filter} name='filter'/>
+                        <button className='button radius' type='submit'>Search Rants</button>
+                        {this.state.filter == 'Enter a Category'
+                        ? (
+                            <div></div>
+                        )
+                        : (
+                            <button onClick={this.onClearClick.bind(this)} className='clear-search-btn'>Clear Search</button>
+                        )
+                        }
                     </form>
-                    <div className="user-rants">
-                        <h3>Rants:</h3>
+                    </div>
+                    <div className="user-rants row">
+                        <h2>Rants:</h2>
                             {this.state.rants.map((rant) => {
                                 return (
                                     <div key={rant._id} className='rant row'>
                                         <div className='large-2 columns'>
-                                            <h3>
+                                            <h5>
                                                 Title: {rant.title}
                                             {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
-                                            </h3>
+                                            </h5>
                                         </div>
                                         <div className='large-2 columns'>
                                             <h6>
