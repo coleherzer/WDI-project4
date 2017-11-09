@@ -7,10 +7,13 @@ const
 
 // Right now, you have it set up where you need
 // to have the token verfied to do anything
-rantsRouter.use(verifyToken)
 
 rantsRouter.route('/')
     .get(rantsCtrl.index)
+
+rantsRouter.use(verifyToken)
+
+rantsRouter.route('/')
     .post(rantsCtrl.create)
 
 rantsRouter.route('/:id')

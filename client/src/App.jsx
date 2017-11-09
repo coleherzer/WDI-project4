@@ -94,12 +94,6 @@ class App extends React.Component {
 						return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
 					}} />
 
-					{/* <Route path="/vip" render={() => {
-						return currentUser
-							? <VIP />
-							: <Redirect to="/login" />
-					}} /> */}
-
 					<Route path="/" component={Home} />
 
 				</Switch>

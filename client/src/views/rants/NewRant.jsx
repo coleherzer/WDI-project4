@@ -45,16 +45,29 @@ class NewRant extends React.Component {
     render() {
         return (
             <div className='NewRant'>
-                <h3>Rant About It</h3>
+                <div className='row'>
+                    <h3>Rant About It</h3>
+                </div>
 
                 {/* form for a new rant */}
-                <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                    <input type="text" placeholder="Title" name='title' />
-                    <input type="text" placeholder="Category" name='category' />
-                    <input type="text" placeholder="Rant it up" name='body' />
+                <form className='rant-form' onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                    <div className='row'>
+                        <input type="text" placeholder="Title" name='title' />
+                    </div>
+                    <div className='row'>
+                        <input type="text" placeholder="Category" name='category' />
+                    </div>
+                    <div className='row'>
+                        <input type="text" placeholder="Add a gif" name='gif' />
+                    </div>
+                    <div className='row'>
+                        <input className='rant-body' type="textarea" placeholder="Rant it up" name='body' />
+                    </div>
                     {/* In addition, would need ability for user to switch
                     On and off public and comments */}
-                    <button type="submit">Rant it</button>
+                    <div className='row new-rant-submit'>
+                        <button type="submit">Rant it</button>
+                    </div>
                 </form>
 
 

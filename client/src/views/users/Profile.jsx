@@ -180,7 +180,14 @@ class Profile extends React.Component {
                                                             <button onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
                                                         </div>
                                                         <div className='large-3 columns'>
-                                                            <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
+                                                            {this.state.currentUser._id === rant.user
+                                                            ? (
+                                                                <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
+                                                            )
+                                                            : (
+                                                                <div></div>
+                                                            )
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>

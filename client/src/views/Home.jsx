@@ -30,7 +30,7 @@ const Home = (props) => {
 				<div className=" large-12 columns home-rants">
 					<h3>Recent Rants: </h3>
 					<div className='recent-rants'>
-						<RecentRants />
+						<RecentRants component={RecentRants}/>
 					</div>
 				</div>
 			</div>

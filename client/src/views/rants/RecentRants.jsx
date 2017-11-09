@@ -6,15 +6,12 @@ import swal from 'sweetalert'
 
 class RecentRants extends React.Component {
     state = {
-        currentUser: clientAuth.getCurrentUser(),
         mounted: false,
         rantBeingViewed: null,
         bodyDisplayed: false,
         commentClicked: false,
         filter: ''
     }
-
-    // this.state.rants.filter(...yourcodehere...).map()
 
     componentDidMount() {
         this.setState({
@@ -28,12 +25,13 @@ class RecentRants extends React.Component {
         }).then((res) => {
             this.setState({
                 ...this.state,
+                currentUser: clientAuth.getCurrentUser() || null,
                 rants: res.data
             })
 
             // order rants by most recent
             this.setState({
-                rants: this.state.rants.sort(function(a,b) {
+                rants: this.state.rants.sort((a,b) => {
                         return new Date(b.createdAt) - new Date(a.createdAt)
                     })
             })
@@ -81,9 +79,11 @@ class RecentRants extends React.Component {
     }
 
     render() {
+        console.log(this.state.rants)
         if(this.state.rants) {
             return (
                 <div className='RecentRants'>
+                    {console.log(this.state.rants)}
                             {this.state.rants.map((rant) => {
                                 return (
                                     <div key={rant._id} className='rant row'>
@@ -143,14 +143,14 @@ class RecentRants extends React.Component {
                                                         }))}}>Comment</button>
                                                     </div>
                                                     <div className='large-3 columns'>
-                                                        {this.state.currentUser._id === rant.user
+                                                        {/*this.state.currentUser._id === rant.user
                                                         ? (
                                                             <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
                                                         )
                                                         : (
                                                             <div></div>
                                                         )
-                                                        }
+                                                    */}
                                                     </div>
                                                 </div>
                                             )
