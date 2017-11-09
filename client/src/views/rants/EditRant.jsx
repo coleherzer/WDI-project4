@@ -48,8 +48,6 @@ class EditRant extends React.Component {
             this.setState({
                 fields: res.data
             })
-            // a built in prop with react router, here we are pushing a new route
-            // to the history of the app, basically redirecting
             this.props.history.push('/profile')
         })
     }
@@ -58,7 +56,6 @@ class EditRant extends React.Component {
         this.setState({
             fields: {
                 ...this.state.fields,
-                // using brackets below it will figure out which target name is being changed
                 [evt.target.name]: evt.target.value
             }
         })
