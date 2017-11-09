@@ -16,7 +16,6 @@ import NewRant from './views/rants/NewRant'
 import EditRant from './views/rants/EditRant'
 import ShowRants from './views/rants/ShowRants'
 
-
 class App extends React.Component {
 	state = { currentUser: null }
 

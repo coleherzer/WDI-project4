@@ -15,7 +15,6 @@ class EditRant extends React.Component {
     }
 
     componentDidMount() {
-        console.log('in edit rant view')
         const id = this.props.match.params.id
         console.log(this.props)
         // could also do const { id } = this.props.match.params

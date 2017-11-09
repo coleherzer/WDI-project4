@@ -22,6 +22,16 @@
 .home-rants {
   border: 2px solid #19194d; }
 
+.search-div {
+  margin-top: 1rem;
+  text-align: center; }
+
+.home-explore-div {
+  text-align: center; }
+
+.explore-btn {
+  margin-top: 1rem; }
+
 .LogIn {
   margin: 5rem 5rem; }
 

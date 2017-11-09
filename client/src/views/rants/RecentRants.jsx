@@ -4,7 +4,7 @@ import clientAuth from '../../clientAuth'
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert'
 
-class ShowRants extends React.Component {
+class RecentRants extends React.Component {
     state = {
         currentUser: clientAuth.getCurrentUser(),
         mounted: false,
@@ -71,14 +71,7 @@ class ShowRants extends React.Component {
     render() {
         if(this.state.rants) {
             return (
-                <div className='ShowRants'>
-                    <h1>All dem rants</h1>
-                    <form onSubmit={this.onSearchSubmit.bind(this)}>
-                        <input className='search-input' type="text" placeholder=''/>
-                        <button type='submit'>Search Rants</button>
-                    </form>
-                    <div className="user-rants">
-                        <h3>Rants:</h3>
+                <div className='RecentRants'>
                             {this.state.rants.map((rant) => {
                                 return (
                                     <div key={rant._id} className='rant row'>
@@ -159,8 +152,11 @@ class ShowRants extends React.Component {
                                 </div>
                                 )
                             })}
+
+                            <div className='row home-explore-div'>
+                                <button className='explore-btn'>Explore More Rants!</button>
+                            </div>
                     </div>
-                </div>
             )
         }
         else {
@@ -174,4 +170,4 @@ class ShowRants extends React.Component {
     }
 }
 
-export default ShowRants
+export default RecentRants

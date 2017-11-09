@@ -1,4 +1,5 @@
 import React from 'react'
+import RecentRants from './rants/RecentRants'
 
 const Home = (props) => {
 	return (
@@ -18,13 +19,19 @@ const Home = (props) => {
 				</div>
 			</div>
 
+			<div className='search-div row'>
+				<form>
+					<input className='search-input' type="text" placeholder='Search for Rants by Category'/>
+					<button type="submit">Search</button>
+				</form>
+			</div>
+
 			<div className='row'>
 				<div className=" large-12 columns home-rants">
-					<h3>Recent Rants</h3>
-					<form>
-						<input className='search-input' type="text" placeholder='Search for Rants by Category'/>
-						<button type="submit">Search</button>
-					</form>
+					<h3>Recent Rants: </h3>
+					<div className='recent-rants'>
+						<RecentRants />
+					</div>
 				</div>
 			</div>
 		</div>
