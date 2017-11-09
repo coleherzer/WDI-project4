@@ -30,6 +30,18 @@ class RecentRants extends React.Component {
                 ...this.state,
                 rants: res.data
             })
+
+            // order rants by most recent
+            this.setState({
+                rants: this.state.rants.sort(function(a,b) {
+                        return new Date(b.createdAt) - new Date(a.createdAt)
+                    })
+            })
+
+            // limit # of rants to 10
+            this.setState({
+                rants: this.state.rants.slice(0, 10)
+            })
         })
     }
 
