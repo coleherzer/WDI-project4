@@ -80,7 +80,7 @@ class NewRant extends React.Component {
                     <div className='row'>
                         <input className='rant-body' type="textarea" placeholder="Rant it up" name='body' />
                     </div>
-                    <div className='row gif-search-div'>
+                    <div className='row gif-search-div text'>
                         Have some fun with it...
                     </div>
                     <div className='row gif-search-input' >
