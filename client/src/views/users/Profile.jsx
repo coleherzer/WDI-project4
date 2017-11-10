@@ -137,35 +137,34 @@ class Profile extends React.Component {
             <div className="Profile">
                 <div className='row'>
                     <div className='large-8 columns'>
-                        <h1>{this.state.currentUser.name}'s Ranter Page</h1>
+                        <h1 className='text'>{this.state.currentUser.name}'s Ranter Page</h1>
                     </div>
                     <div className='large-4 columns edit-profile-btn'>
                         <Link className='button radius' to='/editprofile'>Edit Profile</Link>
                     </div>
                 </div>
 
-                <div className='row'>
-                    <div className='large-12 columns new-rant-btn'>
-                        <Link className='button radius' to='/newrant'>New Rant</Link>
-                    </div>
-                </div>
-
                 <div className="user-rants">
                     <div className='row'>
-                        <h2 className='text'>My Rants:</h2>
+                        <div className='large-6 columns my-rants'>
+                            <h2 className='text'>My Rants:</h2>
+                        </div>
+                        <div className='large-6 columns new-rant-btn'>
+                            <Link className='button radius add-rant' to='/newrant'>New Rant</Link>
+                        </div>
                     </div>
-                        {this.state.userRants.map((rant) => {
+                    {this.state.userRants.map((rant) => {
                             return (
                                 <div key={rant._id} className='rant row'>
                                 <div className='rant-header row'>
                                     <div className='large-4 columns'>
-                                        <h4>
+                                        <h4 className='text'>
                                             Title: {rant.title}
                                         {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
                                         </h4>
                                     </div>
                                     <div className='large-4 columns'>
-                                        <h4>
+                                        <h4 className='text'>
                                             Category: {rant.category}
                                         </h4>
                                     </div>
@@ -182,19 +181,19 @@ class Profile extends React.Component {
                                 </div>
                                 <div className='likes-comments row'>
                                     <div className='large-4 columns'>
-                                        <h6>
+                                        <h6 className='text'>
                                             {rant.likes} Likes
                                         </h6>
                                     </div>
                                     <div className=' large-4 columns'>
-                                        <h6>
+                                        <h6 className='text'>
                                             {rant.comments.length} Comments
                                         </h6>
                                     </div>
                                     <div className=' large-4 columns'>
                                     </div>
                                 </div>
-                                    <div className='row'>
+                                    <div className='row rant-content'>
                                         {this.state.rantBeingViewed === rant._id
                                         ? (
                                             <div className='container'>
@@ -210,19 +209,19 @@ class Profile extends React.Component {
                                                     )
                                                     }
                                                     <div className='large-8 columns'>
-                                                        <h4>Rant:</h4>
-                                                        <p>{rant.body}</p>
+                                                        <h4 className='text'>Rant:</h4>
+                                                        <p className='text'>{rant.body}</p>
                                                     </div>
                                                 </div>
                                                 <div className='row'>
                                                     <div className='comments large-12 columns '>
-                                                        <h4>Comments:</h4>
+                                                        <h4 className='text'>Comments:</h4>
                                                         {rant.comments.map((comment) => {
                                                             return (
-                                                                <div key={comment._id}>
-                                                                    {this.state.currentUser._id == comment.user
+                                                                <div key={comment._id} className='comment text row'>
+                                                                {this.state.currentUser._id == comment.user
                                                                     ? (
-                                                                        <div className='users-comment row'>
+                                                                        <div className='users-comment'>
                                                                             <div className='large-10 columns'>
                                                                                 <p>comment: {comment.body}</p>
                                                                             </div>
@@ -235,7 +234,9 @@ class Profile extends React.Component {
                                                                         <div className='large-12 columns'>
                                                                             {comment.body !== null
                                                                             ? (
-                                                                                <p>comment: {comment.body}</p>
+                                                                                <div className='comment-show'>
+                                                                                    <p>comment: {comment.body}</p>
+                                                                                </div>
                                                                             )
                                                                             : (
                                                                                 <div></div>
@@ -250,14 +251,14 @@ class Profile extends React.Component {
                                                         }
                                                     </div>
                                                 </div>
-                                                <div className='row'>
-                                                        <div className='large-3 columns'>
+                                                <div className='row rant-action-btns'>
+                                                        <div className='large-4 columns'>
                                                             <button className='button radius' onClick={this.onLikeClick.bind(this, rant._id)}>Like</button>
                                                         </div>
-                                                        <div className='large-3 columns'>
+                                                        <div className='large-4 columns'>
                                                             <button className='button radius' onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
                                                         </div>
-                                                        <div className='large-3 columns'>
+                                                        <div className='large-4 columns'>
                                                             {this.state.currentUser._id === rant.user
                                                             ? (
                                                                 <Link className='button radius' to={`/editrant/${rant._id}`}>Edit Rant</Link>
@@ -267,15 +268,6 @@ class Profile extends React.Component {
                                                             )
                                                             }
                                                         </div>
-                                                </div>
-                                                <div className='row'>
-                                                    {console.log(rant)}
-                                                    {rant.comments.map((comment) => {
-                                                        <div class='comment'>
-                                                            <h5>hi</h5>
-                                                            <h3>{comment.body}</h3>
-                                                        </div>
-                                                    })}
                                                 </div>
                                             </div>
                                         )

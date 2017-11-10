@@ -66,7 +66,7 @@ class NewRant extends React.Component {
         return (
             <div className='NewRant'>
                 <div className='row'>
-                    <h3>Rant About It</h3>
+                    <h1 className='text'>Rant About It</h1>
                 </div>
 
                 {/* form for a new rant */}
@@ -84,9 +84,6 @@ class NewRant extends React.Component {
                         Have some fun with it...
                     </div>
                     <div className='row gif-search-input' >
-                        {/* <div className='large-8 columns gif-input'>
-                            <input type="text" placeholder="Search for a Gif" name='gif' />
-                        </div> */}
                         <div className='large-4 columns'>
                             <button onClick={this.onGifClick.bind(this)} className='button round' >Add Gif</button>
                         </div>
@@ -107,8 +104,6 @@ class NewRant extends React.Component {
                         <button onClick={this.onSubmitClick.bind(this)} className='add-rant' type="submit">Rant it</button>
                     </div>
                 </form>
-
-
             </div>
         )
     }

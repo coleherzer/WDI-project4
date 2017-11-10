@@ -143,6 +143,7 @@ class ShowRants extends React.Component {
                     ...this.state
                     //commentClicked: true
                 })
+                this.getInfo()
             })
         })
     }
@@ -164,7 +165,7 @@ class ShowRants extends React.Component {
             return (
                 <div className='ShowRants'>
                     <div className='row'>
-                        <h1>Browse Rants</h1>
+                        <h1 className='text'>Browse Rants</h1>
                     </div>
                     <div className='row'>
                     <form onSubmit={this.onSearchSubmit.bind(this)} onChange={this.onInputChange.bind(this)}>
@@ -181,56 +182,76 @@ class ShowRants extends React.Component {
                     </form>
                     </div>
                     <div className="user-rants row">
-                        <h2>Rants:</h2>
-                            {this.state.rants.map((rant) => {
-                                return (
-                                    <div key={rant._id} className='rant row'>
-                                        <div className='large-2 columns'>
-                                            <h5>
-                                                Title: {rant.title}
-                                            {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
-                                            </h5>
-                                        </div>
-                                        <div className='large-2 columns'>
-                                            <h6>
-                                                {rant.likes} Likes
-                                            </h6>
-                                        </div>
-                                        <div className=' large-2 columns'>
-                                            <h6>
-                                                {rant.comments.length} Comments
-                                            </h6>
-                                        </div>
-                                        <div className='large-2 columns'>
-                                            <h6>
-                                                Category: {rant.category}
-                                            </h6>
-                                        </div>
-                                        <div className='large-2 columns'>
-                                            {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
-                                            ? (
-                                                <button onClick={this.onViewClick.bind(this)}>Hide</button>
-                                            )
-                                            : (
-                                                <button onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
-                                            )
-                                            }
-                                        </div>
-                                    <div className='row'>
+                        <h2 className='text'>Rants:</h2>
+                        {this.state.rants.map((rant) => {
+                            return (
+                                <div key={rant._id} className='rant row'>
+                                <div className='rant-header row'>
+                                    <div className='large-4 columns'>
+                                        <h4 className='text'>
+                                            Title: {rant.title}
+                                        {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
+                                        </h4>
+                                    </div>
+                                    <div className='large-4 columns'>
+                                        <h4 className='text'>
+                                            Category: {rant.category}
+                                        </h4>
+                                    </div>
+                                    <div className='large-4 columns view-btn'>
+                                        {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
+                                        ? (
+                                            <button className='button radius' onClick={this.onViewClick.bind(this)}>Hide</button>
+                                        )
+                                        : (
+                                            <button className='button radius' onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
+                                        )
+                                        }
+                                    </div>
+                                </div>
+                                <div className='likes-comments row'>
+                                    <div className='large-4 columns'>
+                                        <h6 className='text'>
+                                            {rant.likes} Likes
+                                        </h6>
+                                    </div>
+                                    <div className=' large-4 columns'>
+                                        <h6 className='text'>
+                                            {rant.comments.length} Comments
+                                        </h6>
+                                    </div>
+                                    <div className=' large-4 columns'>
+                                    </div>
+                                </div>
+                                    <div className='row rant-content'>
                                         {this.state.rantBeingViewed === rant._id
-                                            ? (
-                                                <div className='view'>
-                                                    <div className='large-3 columns'>
-                                                        <h6>{rant.body}</h6>
-                                                        {/* also going to need to display rant comments here */}
-                                                        <div className='comments'>
-                                                            <h6>Comments:</h6>
-                                                            {rant.comments.map((comment) => {
-                                                                return (
-                                                                    <div key={comment._id} className='comment'>
-                                                                        {this.state.currentUser._id == comment.user
-                                                                        ? (
-                                                                        <div className='users-comment row'>
+                                        ? (
+                                            <div className='container'>
+                                                <div className='row thumb-body'>
+                                                    {rant.gif !== undefined
+                                                    ? (
+                                                        <div className='thumbnail-cont large-4 columns'>
+                                                            <img src={rant.gif} alt="Rant Thumbnail"/>
+                                                        </div>
+                                                    )
+                                                    : (
+                                                        <div></div>
+                                                    )
+                                                    }
+                                                    <div className='large-8 columns'>
+                                                        <h4 className='text'>Rant:</h4>
+                                                        <p className='text'>{rant.body}</p>
+                                                    </div>
+                                                </div>
+                                                <div className='row'>
+                                                    <div className='comments large-12 columns '>
+                                                        <h4 className='text'>Comments:</h4>
+                                                        {rant.comments.map((comment) => {
+                                                            return (
+                                                                <div key={comment._id} className='comment text row'>
+                                                                {this.state.currentUser._id == comment.user
+                                                                    ? (
+                                                                        <div className='users-comment'>
                                                                             <div className='large-10 columns'>
                                                                                 <p>comment: {comment.body}</p>
                                                                             </div>
@@ -238,12 +259,14 @@ class ShowRants extends React.Component {
                                                                                 <button onClick={this.onDeleteClick.bind(this, rant._id, comment._id)}>X</button>
                                                                             </div>
                                                                         </div>
-                                                                        )
-                                                                        : (
+                                                                    )
+                                                                    : (
                                                                         <div className='large-12 columns'>
                                                                             {comment.body !== null
                                                                             ? (
-                                                                                <p>comment: {comment.body}</p>
+                                                                                <div className='comment-show'>
+                                                                                    <p>comment: {comment.body}</p>
+                                                                                </div>
                                                                             )
                                                                             : (
                                                                                 <div></div>
@@ -252,40 +275,42 @@ class ShowRants extends React.Component {
                                                                         </div>
                                                                     )
                                                                 }
-                                                                    </div>
-                                                                )
-                                                            })
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                    <div className='large-3 columns'>
-                                                        <button onClick={this.onLikeClick.bind(this, rant._id)}>Like</button>
-                                                    </div>
-                                                    <div className='large-3 columns'>
-                                                        <button onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
-                                                    </div>
-                                                    <div className='large-3 columns'>
-                                                        {this.state.currentUser._id === rant.user
-                                                        ? (
-                                                            <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
-                                                        )
-                                                        : (
-                                                            <div></div>
-                                                        )
+                                                                </div>
+                                                            )
+                                                        })
                                                         }
                                                     </div>
                                                 </div>
-                                            )
-                                            : (
-                                                <div>
-
+                                                <div className='row rant-action-btns'>
+                                                        <div className='large-4 columns'>
+                                                            <button className='button radius' onClick={this.onLikeClick.bind(this, rant._id)}>Like</button>
+                                                        </div>
+                                                        <div className='large-4 columns'>
+                                                            <button className='button radius' onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
+                                                        </div>
+                                                        <div className='large-4 columns'>
+                                                            {this.state.currentUser._id === rant.user
+                                                            ? (
+                                                                <Link className='button radius' to={`/editrant/${rant._id}`}>Edit Rant</Link>
+                                                            )
+                                                            : (
+                                                                <div></div>
+                                                            )
+                                                            }
+                                                        </div>
                                                 </div>
-                                            )
+                                            </div>
+                                        )
+                                        : (
+                                            <div>
+
+                                            </div>
+                                        )
                                         }
                                     </div>
                                 </div>
-                                )
-                            })}
+                            )
+                        })}
                     </div>
                 </div>
             )

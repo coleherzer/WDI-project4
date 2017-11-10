@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import clientAuth from '../../clientAuth'
+import GiphySelect from 'react-giphy-select'
+import 'react-giphy-select/lib/styles.css'
 
 class EditRant extends React.Component {
 
@@ -9,7 +11,11 @@ class EditRant extends React.Component {
         fields: {
             title: '',
             category: '',
-            body: ''            
+            body: '',
+            commentsEnabled: true,
+            likes: 0,
+            gif: null,
+            public: true          
         }, 
         mounted: false
     }
@@ -34,7 +40,7 @@ class EditRant extends React.Component {
         })
     }
 
-    onFormSubmit(evt, id) {
+    onSubmitClick(evt, id) {
         evt.preventDefault()
         const rantId = this.props.match.params.id
         console.log(this.state.fields)
@@ -60,10 +66,35 @@ class EditRant extends React.Component {
         })
     }
 
-    render() {
-        // const post = this.state.post
+    onGifClick(evt) {
+        evt.preventDefault()
+        this.setState({ gifClicked: !this.state.gifClicked })
+    }
 
-        // console.log(this.props)
+    onGifSelect(gifData) {
+        console.log(gifData.images.fixed_width.url)
+        this.setState({
+            fields: {
+                ...this.state.fields,
+                gif: gifData.images.fixed_width.url
+            }
+        })
+    }
+
+    onDeleteClick(evt, id) {
+        evt.preventDefault()
+        const rantId = this.props.match.params.id
+        axios({
+            method: 'delete',
+            url: `/api/rants/${rantId}`
+        }).then((res) => {
+            this.props.history.push('/profile')
+            console.log('Deleted that rant')
+        })
+    }
+
+
+    render() {
         if (this.state.mounted === false) {
             return (
                 <div>
@@ -76,12 +107,43 @@ class EditRant extends React.Component {
                 <div className='EditProfile'>
                     <h1>Edit Rant: {this.state.fields.title}</h1>
                     {/* below adding the onChange will add that method to all of the form */}
-                    <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                        <input type="text" defaultValue={this.state.fields.title} name="title"/>
-                        <input type="text" defaultValue={this.state.fields.category} name='category'/>
-                        <input type="text" defaultValue={this.state.fields.body} name='body'/>
-                        <button type="submit">Edit Rant</button>
-                    </form>
+                    <form className='rant-form' onChange={this.onInputChange.bind(this)} onSubmit={(evt) => evt.preventDefault()}>
+                    <div className='row'>
+                        <input type="text" placeholder="Title" name='title' />
+                    </div>
+                    <div className='row'>
+                        <input type="text" placeholder="Category" name='category' />
+                    </div>
+                    <div className='row'>
+                        <input className='rant-body' type="textarea" placeholder="Rant it up" name='body' />
+                    </div>
+                    <div className='row gif-search-div'>
+                        Have some fun with it...
+                    </div>
+                    <div className='row gif-search-input' >
+                        <div className='large-4 columns'>
+                            <button onClick={this.onGifClick.bind(this)} className='button round' >Add Gif</button>
+                        </div>
+                        {this.state.gifClicked
+                        ? (
+                            <div className='large-12 columns'>
+                                <GiphySelect className='gif-selector' onEntrySelect={this.onGifSelect.bind(this)}/>
+                            </div>
+                        )
+                        : (
+                            <div></div>
+                        )
+                        }
+                    </div>
+                    {/* In addition, would need ability for user to switch
+                    On and off public and comments */}
+                    <div className='row new-rant-submit center'>
+                        <button onClick={this.onSubmitClick.bind(this)} className='edit-rant' type="submit">Update Rant</button>
+                    </div>
+                </form>
+                <div className='row rant-delete'>
+                    <button onClick={this.onDeleteClick.bind(this)} className='button delete-btn' type="submit">Delete Rant</button>
+                </div>
                 </div>
             )
         }

@@ -112,8 +112,9 @@ $bgColor: rgb(122, 122, 122);
 }
 
 .new-rant-submit {
-    text-align: center;
     margin-top: 2rem; 
+    margin-bottom: 10rem;
+    text-align: center;
 }
 
 .gif-search-div {
@@ -144,7 +145,7 @@ $bgColor: rgb(122, 122, 122);
 .comments {
     background: lightgray;
     margin-top: 1rem!important;
-    margin-left: 5rem!important;
+    margin-left: 8rem!important;
     max-width: none!important;
     width: 80%!important;
     border: 4px solid $darkBlue;
@@ -156,7 +157,7 @@ $bgColor: rgb(122, 122, 122);
 }
 
 .new-rant-btn {
-    text-align: center;
+    text-align: right;
     margin: 2rem 0!important;
 }
 
@@ -212,4 +213,29 @@ hr {
 
 .user-rants {
     margin-bottom: 2rem!important;
+}
+
+.delete-btn {
+    background: rgb(136, 24, 24)!important;
+}
+
+.my-rants {
+    margin-top: 2rem;
+}
+
+.edit-input {
+    width: 50%!important;
+}
+
+.center {
+    text-align: center; 
+}
+
+.rant-delete {
+    text-align: right;
+    margin-bottom: 5rem;
+}
+
+.last-content {
+    margin-bottom: 10rem;
 }

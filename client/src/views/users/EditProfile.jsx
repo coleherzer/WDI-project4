@@ -78,15 +78,37 @@ class EditProfile extends React.Component {
         else {
             return (
                 <div className='EditProfile'>
-                    <h1>Edit Profile: {this.state.fields.name}</h1>
-                    {/* below adding the onChange will add that method to all of the form */}
-                    <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                        <input type="text" defaultValue={this.state.fields.name} name="name"/>
-                        <input type="text" defaultValue={this.state.fields.email} name='email'/>
-                        <input type="password" defaultValue={this.state.fields.password} name='password'/>
-                        <button type="submit">Edit Profile</button>
-                    </form>
-                    <Link to='/deleteuser'>Delete Account</Link>
+                    <div className='container'>
+                        <div className='row'>
+                            <h1 className='text'>Edit Profile: {this.state.fields.name}</h1>
+                        </div>
+                        {/* below adding the onChange will add that method to all of the form */}
+                        <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                            <div className='row'>
+                                <input className='edit-input' type="text" defaultValue={this.state.fields.name} name="name"/>
+                            </div>
+                            <div className='row'>
+                                <input className='edit-input' type="text" defaultValue={this.state.fields.email} name='email'/>
+                            </div>
+                            <div className='row'>
+                                <input className='edit-input' type="password" defaultValue={this.state.fields.password} name='password'/>
+                            </div>
+                            <div className='row'>
+                                <div className='large-6 columns center'>
+                                    <button className='center' type="submit">Edit Profile</button>
+                                </div>
+                                <div className='large-6 columns'>
+                                </div>
+                            </div>
+                        </form>
+                        <div className='row last-content'>
+                            <div className='large-6 columns center'>
+                                <Link className='button radius delete-btn center' to='/deleteuser'>Delete Account</Link>
+                            </div>
+                            <div className='large-6 columns center'>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
         }
