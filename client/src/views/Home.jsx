@@ -1,5 +1,6 @@
 import React from 'react'
 import RecentRants from './rants/RecentRants'
+import { Link } from 'react-router-dom'
 
 const Home = (props) => {
 	return (
@@ -11,24 +12,24 @@ const Home = (props) => {
 					</div>
 					<div className='large-8 columns'>
 						<div className='welcome'>
-							<h1>Welcome to Ranter</h1>
-							<h5>Ranter is a web-based application that allows users to vent about nearly any topic in order to help 
+							<h1 className='welcome-header'>Welcome to Ranter</h1>
+							<hr/>
+							<h5 className='welcome-header'>Ranter is a web-based application that allows users to vent about nearly any topic in order to help 
 								them get certain thoughts and emotions off their chest.</h5>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div className='search-div row'>
-				<form>
-					<input className='search-input' type="text" placeholder='Search for Rants by Category'/>
-					<button type="submit">Search</button>
-				</form>
+			<div className='home-explore-div first-explore'>
+				<div className='large-12 columns'>
+					<Link to='/explore' className='explore-btn button radius'>Explore More Rants!</Link>
+				</div>
 			</div>
 
 			<div className='row'>
 				<div className=" large-12 columns home-rants">
-					<h3>Recent Rants: </h3>
+					<h3 className='text'>Recent Rants: </h3>
 					<div className='recent-rants'>
 						<RecentRants component={RecentRants}/>
 					</div>

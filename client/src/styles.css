@@ -1,3 +1,6 @@
+.text {
+  color: #19194d; }
+
 .button {
   margin: 0 !important; }
 
@@ -7,8 +10,10 @@
   display: inline-block; }
 
 .rant {
-  border: 1px solid black;
-  margin-bottom: .5rem; }
+  margin-top: 1rem !important;
+  border: 5px solid #19194d;
+  margin-bottom: .5rem;
+  border-radius: 10px; }
 
 .search-input {
   display: inline-block !important;
@@ -16,11 +21,14 @@
   margin-left: 1rem !important;
   margin-right: 1rem !important; }
 
+.Home {
+  background: #7a7a7a; }
+
 .welcome {
   margin-top: 3rem; }
 
-.home-rants {
-  border: 2px solid #19194d; }
+.welcome-header {
+  color: #19194d; }
 
 .search-div {
   margin-top: 1rem;
@@ -30,8 +38,15 @@
   text-align: center;
   margin: 1rem 0 !important; }
 
+.rant-action-btns {
+  margin: 1rem 0 !important;
+  text-align: center; }
+
 .explore-btn {
   margin-top: 1rem; }
+
+.rant-content {
+  padding-right: 1rem !important; }
 
 .LogIn {
   margin: 5rem 5rem; }
@@ -75,5 +90,52 @@
 
 .gif-selector {
   width: 100%; }
+
+.Profile {
+  background: #7a7a7a; }
+
+.comment {
+  border-bottom: 2px solid black; }
+
+.comments {
+  background: lightgray;
+  margin-top: 1rem !important;
+  margin-left: 5rem !important;
+  max-width: none !important;
+  width: 80% !important;
+  border: 4px solid #19194d; }
+
+.edit-profile-btn {
+  text-align: right;
+  margin-top: 1rem; }
+
+.new-rant-btn {
+  text-align: center;
+  margin: 2rem 0 !important; }
+
+.view-btn {
+  text-align: right; }
+
+.rant-header, .likes-comments {
+  text-align: center; }
+
+.thumbnail-cont {
+  text-align: center;
+  width: 200px;
+  height: auto;
+  border: 5px solid #44b8a6;
+  border-radius: 5px; }
+
+.thumb-body {
+  margin-left: 5rem !important;
+  max-width: none !important;
+  width: auto !important; }
+
+.ShowRants {
+  background: #7a7a7a; }
+
+.first-explore {
+  width: 100%;
+  text-align: center; }
 
 /*# sourceMappingURL=styles.css.map */

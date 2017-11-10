@@ -5,13 +5,18 @@ module.exports = {
 	create: (req, res) => {
         console.log(req.body)
         console.log(req.user)
-        const newCommentData = {...req.body, user: req.user._id}
-        Rant.findById(req.params.id, (err, rant) => {
-            rant.comments.push(newCommentData)
-            rant.save((err, updatedRant) => {
-                res.json({success: true, message: 'Comment added', rant: updatedRant})
+        if (req.body.body !== null) {
+            const newCommentData = {...req.body, user: req.user._id}
+            Rant.findById(req.params.id, (err, rant) => {
+                rant.comments.push(newCommentData)
+                rant.save((err, updatedRant) => {
+                    res.json({success: true, message: 'Comment added', rant: updatedRant})
+                })
             })
-        })
+        }
+        else {
+            res.json({success: false})
+        }
     },
     destroy: (req, res) => {
         Rant.findById(req.params.rantId, (err, rant) => {

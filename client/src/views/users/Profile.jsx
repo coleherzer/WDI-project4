@@ -44,6 +44,20 @@ class Profile extends React.Component {
         })
     }
 
+    getInfo() {
+        axios({
+            method: 'get',
+            url: '/api/rants'
+        }).then((res) => {
+            this.setState({
+                ...this.state,
+                userRants: res.data.filter((rant) => {
+                    return rant.user === this.state.currentUser._id
+                })
+            })
+        })
+    }
+
     onViewClick(id) {
         if(id) {
             this.setState({
@@ -62,10 +76,6 @@ class Profile extends React.Component {
         this.props.history.push(`/editrant/${id}`)
     }
 
-    onInputChange() {
-        console.log('hi')
-    }
-
     onCommentClick(id) {
         //const id = id
         const rant = this.state.userRants.find((rant) => {
@@ -77,21 +87,19 @@ class Profile extends React.Component {
             content: {
                 element: "input",
                 attributes: {
-                    onChange: this.onInputChange.bind(this),
                     placeholder: "Comment",
                     type: "text",
                     name: 'body'
                 }
             },
         }).then((commentBody) => {
-            console.log(commentBody)
             axios({ method: 'post', url: `/api/rants/${id}/comments`, data: {body: commentBody} })
             .then((res) => {
-                console.log(res.data)
                 this.setState({
                     ...this.state
                     //commentClicked: true
                 })
+                this.getInfo()
             })
         })
     }
@@ -106,90 +114,159 @@ class Profile extends React.Component {
             url: `/api/rants/${id}`,
             data: rant
         }).then((res) => {
-            console.log(res.data)
             this.setState({
                 ...this.state.userRants
             })
         })
     }
 
+    onDeleteClick(id, commentId) {
+        console.log(id)
+
+        axios({
+            method: 'delete',
+            url: `/api/rants/${id}/comments/${commentId}`
+        }).then((res) => {
+            console.log('Deleted that comment')
+            this.getInfo()
+        })
+    }
+
     render() {
-        //console.log(this.state)
-        //console.log(this.state.currentUser)
-        console.log(this.state.rantBeingViewed)
         return (
             <div className="Profile">
-                <h1>{this.state.currentUser.name}'s Ranter page</h1>
-                <Link to='/editprofile'>Edit Profile</Link>
-                <Link to='/newrant'>New Rant</Link>
+                <div className='row'>
+                    <div className='large-8 columns'>
+                        <h1>{this.state.currentUser.name}'s Ranter Page</h1>
+                    </div>
+                    <div className='large-4 columns edit-profile-btn'>
+                        <Link className='button radius' to='/editprofile'>Edit Profile</Link>
+                    </div>
+                </div>
+
+                <div className='row'>
+                    <div className='large-12 columns new-rant-btn'>
+                        <Link className='button radius' to='/newrant'>New Rant</Link>
+                    </div>
+                </div>
 
                 <div className="user-rants">
-                    <h3>My Rants:</h3>
+                    <div className='row'>
+                        <h2 className='text'>My Rants:</h2>
+                    </div>
                         {this.state.userRants.map((rant) => {
                             return (
                                 <div key={rant._id} className='rant row'>
-                                    <div className='large-2 columns'>
-                                        <h3>
+                                <div className='rant-header row'>
+                                    <div className='large-4 columns'>
+                                        <h4>
                                             Title: {rant.title}
                                         {/* <Link to={`/posts/${post._id}`}>{rant.title}</Link> */}
-                                        </h3>
+                                        </h4>
                                     </div>
-                                    <div className='large-2 columns'>
+                                    <div className='large-4 columns'>
+                                        <h4>
+                                            Category: {rant.category}
+                                        </h4>
+                                    </div>
+                                    <div className='large-4 columns view-btn'>
+                                        {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
+                                        ? (
+                                            <button className='button radius' onClick={this.onViewClick.bind(this)}>Hide</button>
+                                        )
+                                        : (
+                                            <button className='button radius' onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
+                                        )
+                                        }
+                                    </div>
+                                </div>
+                                <div className='likes-comments row'>
+                                    <div className='large-4 columns'>
                                         <h6>
                                             {rant.likes} Likes
                                         </h6>
                                     </div>
-                                    <div className=' large-2 columns'>
+                                    <div className=' large-4 columns'>
                                         <h6>
                                             {rant.comments.length} Comments
                                         </h6>
                                     </div>
-                                    <div className='large-2 columns'>
-                                        <h6>
-                                            Category: {rant.category}
-                                        </h6>
+                                    <div className=' large-4 columns'>
                                     </div>
-                                    <div className='large-2 columns'>
-                                        {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
-                                        ? (
-                                            <button onClick={this.onViewClick.bind(this)}>Hide</button>
-                                        )
-                                        : (
-                                            <button onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
-                                        )
-                                        }
-                                    </div>
-
+                                </div>
                                     <div className='row'>
                                         {this.state.rantBeingViewed === rant._id
                                         ? (
                                             <div className='container'>
+                                                <div className='row thumb-body'>
+                                                    {rant.gif !== undefined
+                                                    ? (
+                                                        <div className='thumbnail-cont large-4 columns'>
+                                                            <img src={rant.gif} alt="Rant Thumbnail"/>
+                                                        </div>
+                                                    )
+                                                    : (
+                                                        <div></div>
+                                                    )
+                                                    }
+                                                    <div className='large-8 columns'>
+                                                        <h4>Rant:</h4>
+                                                        <p>{rant.body}</p>
+                                                    </div>
+                                                </div>
                                                 <div className='row'>
-                                                    <div className='view'>
+                                                    <div className='comments large-12 columns '>
+                                                        <h4>Comments:</h4>
+                                                        {rant.comments.map((comment) => {
+                                                            return (
+                                                                <div key={comment._id}>
+                                                                    {this.state.currentUser._id == comment.user
+                                                                    ? (
+                                                                        <div className='users-comment row'>
+                                                                            <div className='large-10 columns'>
+                                                                                <p>comment: {comment.body}</p>
+                                                                            </div>
+                                                                            <div className='large-2 columns'>
+                                                                                <button onClick={this.onDeleteClick.bind(this, rant._id, comment._id)}>X</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    )
+                                                                    : (
+                                                                        <div className='large-12 columns'>
+                                                                            {comment.body !== null
+                                                                            ? (
+                                                                                <p>comment: {comment.body}</p>
+                                                                            )
+                                                                            : (
+                                                                                <div></div>
+                                                                            )
+                                                                            }   
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                                </div>
+                                                            )
+                                                        })
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div className='row'>
                                                         <div className='large-3 columns'>
-                                                            <h6>{rant.body}</h6>
-                                                            {/* also going to need to display rant comments here */}
+                                                            <button className='button radius' onClick={this.onLikeClick.bind(this, rant._id)}>Like</button>
                                                         </div>
                                                         <div className='large-3 columns'>
-                                                            <button onClick={this.onLikeClick.bind(this, rant._id)}>Like</button>
-                                                        </div>
-                                                        <div className='large-3 columns'>
-                                                            <button onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
+                                                            <button className='button radius' onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
                                                         </div>
                                                         <div className='large-3 columns'>
                                                             {this.state.currentUser._id === rant.user
                                                             ? (
-                                                                <Link to={`/editrant/${rant._id}`}>Edit Rant</Link>
+                                                                <Link className='button radius' to={`/editrant/${rant._id}`}>Edit Rant</Link>
                                                             )
                                                             : (
                                                                 <div></div>
                                                             )
                                                             }
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div className='row'>
-                                                    <img src={rant.gif} alt="Rant Thumbnail"/>
                                                 </div>
                                                 <div className='row'>
                                                     {console.log(rant)}
@@ -220,29 +297,3 @@ class Profile extends React.Component {
 }
 
 export default Profile
-
-/*
-onClick={this.onCommentClick(swal({
-    content: {
-        element: "input",
-        attributes: {
-        placeholder: "Type your password",
-        type: "password",
-        },
-    },
-    }))}
-*/
-
-/* <div>
-    <button onClick={() => this.setState({ show: true })}>Alert</button>
-    <SweetAlert
-        show={this.state.show}
-        title="Add Comment"
-        formField= ""
-        /* attributes= 
-            placeholder= "Type your password"
-            type= "text"
-        */
-//         onConfirm={() => this.setState({ show: false })}
-//     />
-// </div> */

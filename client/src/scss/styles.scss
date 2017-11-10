@@ -1,17 +1,27 @@
+$tealColor: rgb(68, 184, 166);
+$darkBlue: rgb(25, 25, 77);
+$bgColor: rgb(122, 122, 122);
+
+.text {
+    color: $darkBlue;
+}
+
 //Nav styles
 .button {
     margin: 0!important;
 }
 
 .NavBar {
-    background: rgb(68, 184, 166);
+    background: $tealColor;
     width: 100%;
     display: inline-block;
 }
 
 .rant {
-    border: 1px solid black;
+    margin-top: 1rem!important;
+    border: 5px solid $darkBlue;
     margin-bottom: .5rem; 
+    border-radius: 10px;
 }
 
 .search-input {
@@ -22,12 +32,16 @@
 }
 
 // Home Styles
+.Home {
+    background: $bgColor;
+}
+
 .welcome {
     margin-top: 3rem;
 }
 
-.home-rants {
-    border: 2px solid rgb(25, 25, 77);
+.welcome-header {
+    color: $darkBlue;
 }
 
 .search-div {
@@ -40,8 +54,17 @@
     margin: 1rem 0!important; 
 }
 
+.rant-action-btns {
+    margin: 1rem 0!important;
+    text-align: center;
+}
+
 .explore-btn {
     margin-top: 1rem;
+}
+
+.rant-content {
+    padding-right: 1rem!important
 }
 
 // Log In page styles
@@ -97,9 +120,70 @@
 }
 
 .add-rant{
-    background: rgb(68, 184, 166)!important;
+    background: $tealColor!important;
 }
 
 .gif-selector {
     width: 100%;
+}
+
+// Profile page styles
+.Profile {
+    background: $bgColor;
+}
+
+.comment {
+    border-bottom: 2px solid black; 
+}
+
+.comments {
+    background: lightgray;
+    margin-top: 1rem!important;
+    margin-left: 5rem!important;
+    max-width: none!important;
+    width: 80%!important;
+    border: 4px solid $darkBlue;
+}
+
+.edit-profile-btn {
+    text-align: right; 
+    margin-top: 1rem;
+}
+
+.new-rant-btn {
+    text-align: center;
+    margin: 2rem 0!important;
+}
+
+.view-btn {
+    text-align: right;
+}
+
+.rant-header, .likes-comments {
+    text-align: center;
+}
+
+.thumbnail-cont {
+    text-align: center;
+    width: 200px;
+    height: auto;
+    border: 5px solid $tealColor;
+    border-radius: 5px;
+}
+
+.thumb-body {
+    margin-left: 5rem!important;
+    max-width: none!important;
+    width: auto!important;
+}
+
+
+
+.ShowRants {
+    background: $bgColor;
+}
+
+.first-explore {
+    width: 100%;
+    text-align: center;
 }

@@ -105,6 +105,60 @@ class ShowRants extends React.Component {
         })
     }
 
+    getInfo() {
+        axios({
+            method: 'get',
+            url: '/api/rants'
+        }).then((res) => {
+            this.setState({
+                ...this.state,
+                rants: res.data
+            })
+        })
+    }
+
+    onCommentClick(id) {
+        //const id = id
+        const rant = this.state.rants.find((rant) => {
+            return id === rant._id
+        })
+
+        swal({
+            title: 'Add Comment',
+            content: {
+                element: "input",
+                attributes: {
+                    onChange: this.onInputChange.bind(this),
+                    placeholder: "Comment",
+                    type: "text",
+                    name: 'body'
+                }
+            },
+        }).then((commentBody) => {
+            console.log(commentBody)
+            axios({ method: 'post', url: `/api/rants/${id}/comments`, data: {body: commentBody} })
+            .then((res) => {
+                console.log(res.data)
+                this.setState({
+                    ...this.state
+                    //commentClicked: true
+                })
+            })
+        })
+    }
+
+    onDeleteClick(id, commentId) {
+        console.log(id)
+
+        axios({
+            method: 'delete',
+            url: `/api/rants/${id}/comments/${commentId}`
+        }).then((res) => {
+            console.log('Deleted that comment')
+            this.getInfo()
+        })
+    }
+
     render() {
         if(this.state.rants) {
             return (
@@ -169,22 +223,46 @@ class ShowRants extends React.Component {
                                                     <div className='large-3 columns'>
                                                         <h6>{rant.body}</h6>
                                                         {/* also going to need to display rant comments here */}
+                                                        <div className='comments'>
+                                                            <h6>Comments:</h6>
+                                                            {rant.comments.map((comment) => {
+                                                                return (
+                                                                    <div key={comment._id} className='comment'>
+                                                                        {this.state.currentUser._id == comment.user
+                                                                        ? (
+                                                                        <div className='users-comment row'>
+                                                                            <div className='large-10 columns'>
+                                                                                <p>comment: {comment.body}</p>
+                                                                            </div>
+                                                                            <div className='large-2 columns'>
+                                                                                <button onClick={this.onDeleteClick.bind(this, rant._id, comment._id)}>X</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        )
+                                                                        : (
+                                                                        <div className='large-12 columns'>
+                                                                            {comment.body !== null
+                                                                            ? (
+                                                                                <p>comment: {comment.body}</p>
+                                                                            )
+                                                                            : (
+                                                                                <div></div>
+                                                                            )
+                                                                            }   
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                                    </div>
+                                                                )
+                                                            })
+                                                            }
+                                                        </div>
                                                     </div>
                                                     <div className='large-3 columns'>
                                                         <button onClick={this.onLikeClick.bind(this, rant._id)}>Like</button>
                                                     </div>
                                                     <div className='large-3 columns'>
-                                                        <button onClick={() => {
-                                                            (swal({
-                                                            title: "Add Comment",
-                                                            content: {
-                                                                element: "input",
-                                                                attributes: {
-                                                                    placeholder: "Comment",
-                                                                    type: "test",
-                                                                },
-                                                            },
-                                                        }))}}>Comment</button>
+                                                        <button onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
                                                     </div>
                                                     <div className='large-3 columns'>
                                                         {this.state.currentUser._id === rant.user
