@@ -24,7 +24,7 @@ Developers: Header to the project [github](https://github.com/coleherzer/WDI-pro
 - Node.js
 - MongoDB
 - Express
-- SASS
+- Sass
 - Foundation / React Foundation
 - SweetAlert
 - HTML
