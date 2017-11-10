@@ -64,4 +64,16 @@
   text-align: center;
   margin-top: 2rem; }
 
+.gif-search-div {
+  margin: 1rem 0 !important; }
+
+.gif-input {
+  padding-left: -1rem; }
+
+.add-rant {
+  background: #44b8a6 !important; }
+
+.gif-selector {
+  width: 100%; }
+
 /*# sourceMappingURL=styles.css.map */

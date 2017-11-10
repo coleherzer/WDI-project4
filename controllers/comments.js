@@ -4,6 +4,7 @@ module.exports = {
     // create a new comment
 	create: (req, res) => {
         console.log(req.body)
+        console.log(req.user)
         const newCommentData = {...req.body, user: req.user._id}
         Rant.findById(req.params.id, (err, rant) => {
             rant.comments.push(newCommentData)

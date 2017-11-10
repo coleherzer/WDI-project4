@@ -74,7 +74,7 @@ class ShowRants extends React.Component {
 
         this.setState({
             rants: this.state.rants.filter((rant) => {
-                return rant.category == this.state.filter
+                return rant.category === this.state.filter
             })
         })
 
@@ -116,7 +116,7 @@ class ShowRants extends React.Component {
                     <form onSubmit={this.onSearchSubmit.bind(this)} onChange={this.onInputChange.bind(this)}>
                         <input className='search-input radius' defaultValue='' type="text" placeholder={this.state.filter} name='filter'/>
                         <button className='button radius' type='submit'>Search Rants</button>
-                        {this.state.filter == 'Enter a Category'
+                        {this.state.filter === 'Enter a Category'
                         ? (
                             <div></div>
                         )

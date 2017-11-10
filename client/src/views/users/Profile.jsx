@@ -68,10 +68,9 @@ class Profile extends React.Component {
 
     onCommentClick(id) {
         //const id = id
-        const rant = this.state.userRants.filter((rant) => {
+        const rant = this.state.userRants.find((rant) => {
             return id === rant._id
         })
-        console.log(rant)
 
         swal({
             title: 'Add Comment',
@@ -84,30 +83,28 @@ class Profile extends React.Component {
                     name: 'body'
                 }
             },
-        }).then(() => {
-            console.log(swal.content)
-            axios({
-                method: 'post',
-                url: `/api/rants/${id}/comments`,
-                data: swal.content.attributes.placeholder
-            })
-        }).then((res) => {
-            this.setState({
-                ...this.state
-                //commentClicked: true
+        }).then((commentBody) => {
+            console.log(commentBody)
+            axios({ method: 'post', url: `/api/rants/${id}/comments`, data: {body: commentBody} })
+            .then((res) => {
+                console.log(res.data)
+                this.setState({
+                    ...this.state
+                    //commentClicked: true
+                })
             })
         })
     }
 
     onLikeClick(id) {
-        const rant = this.state.userRants.filter((rant) => {
+        const rant = this.state.userRants.find((rant) => {
             return id === rant._id
         })
-        rant[0].likes += 1
+        rant.likes += 1
         axios({
             method: 'patch',
             url: `/api/rants/${id}`,
-            data: rant[0]
+            data: rant
         }).then((res) => {
             console.log(res.data)
             this.setState({
@@ -190,6 +187,9 @@ class Profile extends React.Component {
                                                             }
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div className='row'>
+                                                    <img src={rant.gif} alt="Rant Thumbnail"/>
                                                 </div>
                                                 <div className='row'>
                                                     {console.log(rant)}

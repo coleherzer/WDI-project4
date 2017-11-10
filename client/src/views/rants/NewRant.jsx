@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import GiphySelect from 'react-giphy-select'
+import 'react-giphy-select/lib/styles.css'
 
 class NewRant extends React.Component {
 
@@ -10,11 +12,13 @@ class NewRant extends React.Component {
             body: '',
             commentsEnabled: true,
             likes: 0,
+            gif: null,
             public: true
-        }
+        },
+        gifClicked: false
     }
 
-    onFormSubmit(evt) {
+    onSubmitClick(evt) {
         evt.preventDefault()
         console.log(this.state.fields)
         axios({
@@ -42,6 +46,22 @@ class NewRant extends React.Component {
         })
     }
 
+    onGifClick(evt) {
+        evt.preventDefault()
+        this.setState({ gifClicked: !this.state.gifClicked })
+    }
+
+    onGifSelect(gifData) {
+        console.log(gifData.images.fixed_width.url)
+        this.setState({
+            fields: {
+                ...this.state.fields,
+                gif: gifData.images.fixed_width.url
+            }
+            
+        })
+    }
+
     render() {
         return (
             <div className='NewRant'>
@@ -50,7 +70,7 @@ class NewRant extends React.Component {
                 </div>
 
                 {/* form for a new rant */}
-                <form className='rant-form' onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                <form className='rant-form' onChange={this.onInputChange.bind(this)} onSubmit={(evt) => evt.preventDefault()}>
                     <div className='row'>
                         <input type="text" placeholder="Title" name='title' />
                     </div>
@@ -58,15 +78,33 @@ class NewRant extends React.Component {
                         <input type="text" placeholder="Category" name='category' />
                     </div>
                     <div className='row'>
-                        <input type="text" placeholder="Add a gif" name='gif' />
-                    </div>
-                    <div className='row'>
                         <input className='rant-body' type="textarea" placeholder="Rant it up" name='body' />
+                    </div>
+                    <div className='row gif-search-div'>
+                        Have some fun with it...
+                    </div>
+                    <div className='row gif-search-input' >
+                        {/* <div className='large-8 columns gif-input'>
+                            <input type="text" placeholder="Search for a Gif" name='gif' />
+                        </div> */}
+                        <div className='large-4 columns'>
+                            <button onClick={this.onGifClick.bind(this)} className='button round' >Add Gif</button>
+                        </div>
+                        {this.state.gifClicked
+                        ? (
+                            <div className='large-12 columns'>
+                                <GiphySelect className='gif-selector' onEntrySelect={this.onGifSelect.bind(this)}/>
+                            </div>
+                        )
+                        : (
+                            <div></div>
+                        )
+                        }
                     </div>
                     {/* In addition, would need ability for user to switch
                     On and off public and comments */}
                     <div className='row new-rant-submit'>
-                        <button type="submit">Rant it</button>
+                        <button onClick={this.onSubmitClick.bind(this)} className='add-rant' type="submit">Rant it</button>
                     </div>
                 </form>
 

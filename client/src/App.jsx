@@ -17,11 +17,7 @@ import EditRant from './views/rants/EditRant'
 import ShowRants from './views/rants/ShowRants'
 
 class App extends React.Component {
-	state = { currentUser: null }
-
-	componentDidMount() {
-		this.setState({ currentUser: clientAuth.getCurrentUser() })
-	}
+	state = { currentUser: clientAuth.getCurrentUser() }
 
 	onLoginSuccess(user) {
 		this.setState({ currentUser: clientAuth.getCurrentUser() })
