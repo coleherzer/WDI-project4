@@ -31,6 +31,7 @@ Developers: Header to the project [github](https://github.com/coleherzer/WDI-pro
 - CSS
 - JavaScript
 - React Giphy Selector
+- Axios
 
 --
 

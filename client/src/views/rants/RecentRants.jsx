@@ -216,7 +216,7 @@ class RecentRants extends React.Component {
                                                         {rant.comments.map((comment) => {
                                                             return (
                                                                 <div key={comment._id} className='comment text row'>
-                                                                {this.state.currentUser._id == comment.user
+                                                                {this.state.currentUser !== null && this.state.currentUser._id == comment.user
                                                                     ? (
                                                                         <div className='users-comment'>
                                                                             <div className='large-10 columns'>
@@ -256,7 +256,7 @@ class RecentRants extends React.Component {
                                                             <button className='button radius' onClick={this.onCommentClick.bind(this, rant._id)}>Comment</button>
                                                         </div>
                                                         <div className='large-4 columns'>
-                                                            {this.state.currentUser._id === rant.user
+                                                            {this.state.currentUser !== null && this.state.currentUser._id === rant.user
                                                             ? (
                                                                 <Link className='button radius' to={`/editrant/${rant._id}`}>Edit Rant</Link>
                                                             )
