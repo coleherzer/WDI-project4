@@ -1,3 +1,7 @@
+.App {
+  background: #7a7a7a;
+  height: 100% !important; }
+
 .text {
   color: #19194d; }
 
@@ -137,5 +141,21 @@
 .first-explore {
   width: 100%;
   text-align: center; }
+
+.explore-right {
+  margin-top: 1rem !important;
+  text-align: right; }
+
+.recent-rants-heading {
+  margin-top: 1rem !important; }
+
+hr {
+  background-color: #19194d !important; }
+
+.bottom-explore {
+  margin-bottom: 2rem !important; }
+
+.user-rants {
+  margin-bottom: 2rem !important; }
 
 /*# sourceMappingURL=styles.css.map */

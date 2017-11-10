@@ -2,6 +2,11 @@ $tealColor: rgb(68, 184, 166);
 $darkBlue: rgb(25, 25, 77);
 $bgColor: rgb(122, 122, 122);
 
+.App {
+    background: $bgColor;
+    height: 100%!important;
+}
+
 .text {
     color: $darkBlue;
 }
@@ -186,4 +191,25 @@ $bgColor: rgb(122, 122, 122);
 .first-explore {
     width: 100%;
     text-align: center;
+}
+
+.explore-right {
+    margin-top: 1rem!important;
+    text-align: right;
+}
+
+.recent-rants-heading {
+    margin-top: 1rem!important;
+}
+
+hr {
+    background-color: $darkBlue!important;
+}
+
+.bottom-explore {
+    margin-bottom: 2rem!important;
+}
+
+.user-rants {
+    margin-bottom: 2rem!important;
 }

@@ -266,15 +266,6 @@ class RecentRants extends React.Component {
                                                             }
                                                         </div>
                                                 </div>
-                                                <div className='row'>
-                                                    {console.log(rant)}
-                                                    {rant.comments.map((comment) => {
-                                                        <div class='comment'>
-                                                            <h5>hi</h5>
-                                                            <h3>{comment.body}</h3>
-                                                        </div>
-                                                    })}
-                                                </div>
                                             </div>
                                         )
                                         : (
@@ -288,7 +279,7 @@ class RecentRants extends React.Component {
                             )
                         })}
 
-                            <div className='row home-explore-div'>
+                            <div className='home-explore-div bottom-explore'>
                                 <Link to='/explore' className='explore-btn button radius'>Explore More Rants!</Link>
                             </div>
                     </div>

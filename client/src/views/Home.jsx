@@ -21,20 +21,18 @@ const Home = (props) => {
 				</div>
 			</div>
 
-			<div className='home-explore-div first-explore'>
-				<div className='large-12 columns'>
+			<div className='row'>
+				<div className='large-8 columns recent-rants-heading'>
+					<h1 className='text'>Recent Rants: </h1>
+				</div>
+				<div className='large-4 columns explore-right'>
 					<Link to='/explore' className='explore-btn button radius'>Explore More Rants!</Link>
 				</div>
+				<hr className='color-hr'/>
 			</div>
-
-			<div className='row'>
-				<div className=" large-12 columns home-rants">
-					<h3 className='text'>Recent Rants: </h3>
-					<div className='recent-rants'>
-						<RecentRants component={RecentRants}/>
-					</div>
+				<div className='recent-rants'>
+					<RecentRants component={RecentRants}/>
 				</div>
-			</div>
 		</div>
 	)
 }
