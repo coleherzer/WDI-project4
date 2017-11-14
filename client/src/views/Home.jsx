@@ -8,7 +8,7 @@ const Home = (props) => {
 			<div className="home-container">
 				<div className='row'>
 					<div className='large-4 columns'>
-						<img src="https://goo.gl/wnisqt" alt="Ranter Logo" className='logo' />
+						<img src="https://goo.gl/GMRPL7" alt="Ranter Logo" className='logo' />
 					</div>
 					<div className='large-8 columns'>
 						<div className='welcome'>
@@ -23,7 +23,7 @@ const Home = (props) => {
 
 			<div className='row'>
 				<div className='large-8 columns recent-rants-heading'>
-					<h1 className='text'>Recent Rants: </h1>
+					<h2 className='text'>Recent Rants: </h2>
 				</div>
 				<div className='large-4 columns explore-right'>
 					<Link to='/explore' className='explore-btn button radius'>Explore More Rants!</Link>
