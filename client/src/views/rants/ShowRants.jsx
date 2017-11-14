@@ -164,10 +164,10 @@ class ShowRants extends React.Component {
         if(this.state.rants) {
             return (
                 <div className='ShowRants'>
-                    <div className='row'>
+                    <div className='row center'>
                         <h1 className='text'>Browse Rants</h1>
                     </div>
-                    <div className='row'>
+                    <div className='row center'>
                     <form onSubmit={this.onSearchSubmit.bind(this)} onChange={this.onInputChange.bind(this)}>
                         <input className='search-input radius' defaultValue='' type="text" placeholder={this.state.filter} name='filter'/>
                         <button className='button radius' type='submit'>Search Rants</button>
@@ -201,10 +201,10 @@ class ShowRants extends React.Component {
                                     <div className='large-4 columns view-btn'>
                                         {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
                                         ? (
-                                            <button className='button radius' onClick={this.onViewClick.bind(this)}>Hide</button>
+                                            <button className='button radius view' onClick={this.onViewClick.bind(this)}>Hide</button>
                                         )
                                         : (
-                                            <button className='button radius' onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
+                                            <button className='button radius view' onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
                                         )
                                         }
                                     </div>

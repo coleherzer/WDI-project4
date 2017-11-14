@@ -7,21 +7,21 @@ const NavBar = (props) => {
 		<div className='NavBar'>
 			{props.currentUser
 				? (
-					<ButtonGroup>
-						<FLink to="/">Home</FLink>
+					<ButtonGroup className='menu-hover-lines'>
+						<FLink className='nav-btn' to="/">Home</FLink>
 						<div className='right'>
-							<FLink to="/profile">Profile</FLink>
-							<FLink to="/explore">Explore Rants</FLink>
-							<FLink to="/logout">Log Out</FLink>
+							<FLink className='nav-btn' to="/profile">Profile</FLink>
+							<FLink className='nav-btn' to="/explore">Explore Rants</FLink>
+							<FLink className='nav-btn' to="/logout">Log Out</FLink>
 						</div>
 					</ButtonGroup>
 				)
 				: (
 					<ButtonGroup>
-						<FLink to="/">Home</FLink>
+						<FLink className='nav-btn' to="/">Home</FLink>
 						<div className='right'>
-							<FLink to="/login">Log In</FLink>
-							<FLink to="/signup">Sign Up</FLink>
+							<FLink className='nav-btn' to="/login">Log In</FLink>
+							<FLink className='nav-btn' to="/signup">Sign Up</FLink>
 						</div>
 					</ButtonGroup>
 				)

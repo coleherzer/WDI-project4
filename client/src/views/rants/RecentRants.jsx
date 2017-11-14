@@ -168,10 +168,10 @@ class RecentRants extends React.Component {
                                     <div className='large-4 columns view-btn'>
                                         {this.state.bodyDisplayed && this.state.rantBeingViewed === rant._id
                                         ? (
-                                            <button className='button radius' onClick={this.onViewClick.bind(this)}>Hide</button>
+                                            <button className='button radius view' onClick={this.onViewClick.bind(this)}>Hide</button>
                                         )
                                         : (
-                                            <button className='button radius' onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
+                                            <button className='button radius view' onClick={this.onViewClick.bind(this, rant._id)}>View Rant</button>
                                         )
                                         }
                                     </div>

@@ -6,7 +6,7 @@ const
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
 	MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/WDI-project4',
-	PORT = process.env.PORT || 3001,
+	PORT = process.env.PORT || 3001 || 27017,
     usersRoutes = require('./routes/users.js'),
 	rantsRoutes = require('./routes/rants.js')
 

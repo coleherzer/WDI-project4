@@ -1,30 +1,53 @@
-$tealColor: rgb(68, 184, 166);
-$darkBlue: rgb(25, 25, 77);
-$bgColor: rgb(122, 122, 122);
+$ranterBlue: rgb(44,83,158);
+$ranterOrange: rgb(255,116,0);
 
 .App {
-    background: $bgColor;
     height: 100%!important;
 }
 
 .text {
-    color: $darkBlue;
+    color: $ranterBlue;
 }
 
 //Nav styles
 .button {
     margin: 0!important;
+    background-color: $ranterBlue!important;
 }
 
 .NavBar {
-    background: $tealColor;
     width: 100%;
     display: inline-block;
 }
 
+.button-group {
+    background: $ranterBlue; /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(44,83,158,1) 0%, rgba(44,83,158,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c539e', endColorstr='#2c539e',GradientType=0 ); /* IE6-9 */
+}
+
+.button-group a {
+    background: $ranterBlue; /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(44,83,158,1) 0%, rgba(44,83,158,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(44,83,158,1) 0%,rgba(44,83,158,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c539e', endColorstr='#2c539e',GradientType=0 ); /* IE6-9 */
+    font-weight: 900;
+}
+
+.button-group a:hover {
+    background: $ranterOrange; /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255,116,0,1) 0%, rgba(255,116,0,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,116,0,1) 0%,rgba(255,116,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,116,0,1) 0%,rgba(255,116,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7400', endColorstr='#ff7400',GradientType=0 ); /* IE6-9 */
+}
+
 .rant {
     margin-top: 1rem!important;
-    border: 5px solid $darkBlue;
+    border: 5px solid $ranterBlue;
     margin-bottom: .5rem; 
     border-radius: 10px;
 }
@@ -37,16 +60,16 @@ $bgColor: rgb(122, 122, 122);
 }
 
 // Home Styles
-.Home {
-    background: $bgColor;
-}
+// .Home {
+//     background: $bgColor;
+// }
 
 .welcome {
     margin-top: 3rem;
 }
 
 .welcome-header {
-    color: $darkBlue;
+    color: $ranterBlue;
 }
 
 .search-div {
@@ -67,6 +90,10 @@ $bgColor: rgb(122, 122, 122);
 .explore-btn {
     margin-top: 1rem;
 }
+
+.explore-btn:hover {
+    background: $ranterOrange!important;
+} 
 
 .rant-content {
     padding-right: 1rem!important
@@ -126,7 +153,7 @@ $bgColor: rgb(122, 122, 122);
 }
 
 .add-rant{
-    background: $tealColor!important;
+    background: $ranterOrange!important;
 }
 
 .gif-selector {
@@ -134,10 +161,6 @@ $bgColor: rgb(122, 122, 122);
 }
 
 // Profile page styles
-.Profile {
-    background: $bgColor;
-}
-
 .comment {
     border-bottom: 2px solid black; 
 }
@@ -148,7 +171,7 @@ $bgColor: rgb(122, 122, 122);
     margin-left: 8rem!important;
     max-width: none!important;
     width: 80%!important;
-    border: 4px solid $darkBlue;
+    border: 4px solid $ranterBlue;
 }
 
 .edit-profile-btn {
@@ -165,6 +188,10 @@ $bgColor: rgb(122, 122, 122);
     text-align: right;
 }
 
+.view:hover {
+    background: $ranterOrange!important;
+}
+
 .rant-header, .likes-comments {
     text-align: center;
 }
@@ -173,7 +200,7 @@ $bgColor: rgb(122, 122, 122);
     text-align: center;
     width: 200px;
     height: auto;
-    border: 5px solid $tealColor;
+    border: 5px solid $ranterOrange;
     border-radius: 5px;
 }
 
@@ -181,12 +208,6 @@ $bgColor: rgb(122, 122, 122);
     margin-left: 5rem!important;
     max-width: none!important;
     width: auto!important;
-}
-
-
-
-.ShowRants {
-    background: $bgColor;
 }
 
 .first-explore {
@@ -204,7 +225,7 @@ $bgColor: rgb(122, 122, 122);
 }
 
 hr {
-    background-color: $darkBlue!important;
+    background-color: $ranterBlue!important;
 }
 
 .bottom-explore {
