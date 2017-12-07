@@ -128,7 +128,7 @@ $ranterOrange: rgb(255,116,0);
 }
 
 .rant-form {
-    width: 50%;
+    width: 100%;
     display: inline-block;
     margin-left: 8rem;
 }
@@ -259,4 +259,12 @@ hr {
 
 .last-content {
     margin-bottom: 10rem;
+}
+
+.top-spacing {
+    margin-top: 2rem; 
+}
+
+.left-spacing {
+    margin-left: 2rem; 
 }

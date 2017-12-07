@@ -105,42 +105,49 @@ class EditRant extends React.Component {
         else {
             return (
                 <div className='EditProfile'>
-                    <h1>Edit Rant: {this.state.fields.title}</h1>
+                    <h1 className='left-spacing'>Edit Rant: {this.state.fields.title}</h1>
                     {/* below adding the onChange will add that method to all of the form */}
-                    <form className='rant-form' onChange={this.onInputChange.bind(this)} onSubmit={(evt) => evt.preventDefault()}>
                     <div className='row'>
-                        <input type="text" placeholder="Title" name='title' />
-                    </div>
-                    <div className='row'>
-                        <input type="text" placeholder="Category" name='category' />
-                    </div>
-                    <div className='row'>
-                        <input className='rant-body' type="textarea" placeholder="Rant it up" name='body' />
-                    </div>
-                    <div className='row gif-search-div text'>
-                        Have some fun with it...
-                    </div>
-                    <div className='row gif-search-input' >
-                        <div className='large-4 columns'>
-                            <button onClick={this.onGifClick.bind(this)} className='button round' >Add Gif</button>
-                        </div>
-                        {this.state.gifClicked
-                        ? (
-                            <div className='large-12 columns'>
-                                <GiphySelect className='gif-selector' onEntrySelect={this.onGifSelect.bind(this)}/>
+                        <div className='large-8 columns'>
+                            <form className='rant-form' onChange={this.onInputChange.bind(this)} onSubmit={(evt) => evt.preventDefault()}>
+                            <div className='row'>
+                                <input type="text" placeholder="Title" name='title' />
                             </div>
-                        )
-                        : (
-                            <div></div>
-                        )
-                        }
+                            <div className='row'>
+                                <input type="text" placeholder="Category" name='category' />
+                            </div>
+                            <div className='row'>
+                                <input className='rant-body' type="textarea" placeholder="Rant it up" name='body' />
+                            </div>
+                            <div className='row gif-search-div text'>
+                                Have some fun with it...
+                            </div>
+                            <div className='row gif-search-input' >
+                                <div className='large-4 columns'>
+                                    <button onClick={this.onGifClick.bind(this)} className='button round' >Add Gif</button>
+                                </div>
+                                {this.state.gifClicked
+                                ? (
+                                    <div className='large-12 columns'>
+                                        <GiphySelect className='gif-selector' onEntrySelect={this.onGifSelect.bind(this)}/>
+                                    </div>
+                                )
+                                : (
+                                    <div></div>
+                                )
+                                }
+                            </div>
+                            {/* In addition, would need ability for user to switch
+                            On and off public and comments */}
+                            <div className='row new-rant-submit center top-spacing'>
+                                <button onClick={this.onSubmitClick.bind(this)} className='edit-rant' type="submit">Update Rant</button>
+                            </div>
+                        </form>
                     </div>
-                    {/* In addition, would need ability for user to switch
-                    On and off public and comments */}
-                    <div className='row new-rant-submit center'>
-                        <button onClick={this.onSubmitClick.bind(this)} className='edit-rant' type="submit">Update Rant</button>
+                    <div className='large-4 columns'>
+                        <img src="https://goo.gl/FBtd2h" alt="Rant photo"/>
                     </div>
-                </form>
+                </div>
                 <div className='row rant-delete'>
                     <button onClick={this.onDeleteClick.bind(this)} className='button delete-btn' type="submit">Delete Rant</button>
                 </div>
