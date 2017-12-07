@@ -139,8 +139,8 @@ class EditRant extends React.Component {
                             </div>
                             {/* In addition, would need ability for user to switch
                             On and off public and comments */}
-                            <div className='row new-rant-submit center top-spacing'>
-                                <button onClick={this.onSubmitClick.bind(this)} className='edit-rant' type="submit">Update Rant</button>
+                            <div className='row new-rant-submit center'>
+                                <button onClick={this.onSubmitClick.bind(this)} className='edit-rant top-spacing' type="submit">Update Rant</button>
                             </div>
                         </form>
                     </div>
