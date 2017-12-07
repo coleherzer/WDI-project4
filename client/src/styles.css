@@ -91,11 +91,19 @@
 .LogIn {
   margin: 5rem 5rem; }
 
+.login-form {
+  padding: 4rem;
+  background: #2c539e; }
+
 .login-input {
   width: 50% !important; }
 
 .SignUp {
   margin: 5rem 5rem; }
+
+.signup-form {
+  padding: 4rem;
+  background: #2c539e; }
 
 .signup-input {
   width: 50% !important; }
@@ -216,5 +224,9 @@ hr {
 
 .left-spacing {
   margin-left: 10rem; }
+
+.rant-image {
+  width: 100%;
+  height: auto; }
 
 /*# sourceMappingURL=styles.css.map */

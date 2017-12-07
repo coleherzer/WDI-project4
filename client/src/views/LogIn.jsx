@@ -31,12 +31,14 @@ class LogIn extends React.Component {
 		return (
 			<div className='container'>
 				<div className='LogIn'>
+				<div className='login-form'>
 					<h1>Log In</h1>
 					<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
 						<input className='login-input' type="text" placeholder="Email" name="email" value={email} />
 						<input className='login-input' type="password" placeholder="Password" name="password" value={password} />
 						<button>Log In</button>
 					</form>
+				</div>
 				</div>
 			</div>
 		)

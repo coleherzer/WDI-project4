@@ -145,7 +145,7 @@ class EditRant extends React.Component {
                         </form>
                     </div>
                     <div className='large-4 columns'>
-                        <img src="https://goo.gl/FBtd2h" alt="Rant photo"/>
+                        <img className='rant-image' src="https://goo.gl/FBtd2h" alt="Rant photo"/>
                     </div>
                 </div>
                 <div className='row rant-delete'>

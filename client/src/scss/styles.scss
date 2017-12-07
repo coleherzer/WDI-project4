@@ -104,6 +104,11 @@ $ranterOrange: rgb(255,116,0);
     margin: 5rem 5rem; 
 }
 
+.login-form {
+    padding: 4rem;
+    background: $ranterBlue;
+}
+
 .login-input {
     width: 50%!important;
 }
@@ -111,6 +116,11 @@ $ranterOrange: rgb(255,116,0);
 // Sign up page styles 
 .SignUp {
     margin: 5rem 5rem; 
+}
+
+.signup-form {
+    padding: 4rem;
+    background: $ranterBlue;
 }
 
 .signup-input {
@@ -267,4 +277,9 @@ hr {
 
 .left-spacing {
     margin-left: 10rem; 
+}
+
+.rant-image {
+    width: 100%; 
+    height: auto; 
 }
